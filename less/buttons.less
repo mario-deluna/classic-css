@@ -1,0 +1,16 @@
+.btn, button {
+
+	.shadow-border();
+
+	display: inline-block;
+	min-width: 75px * @s;
+	height: 24px * @s;
+	line-height: 24px * @s;
+	text-align: center;
+	color: #000;
+	text-decoration: none;
+
+	&:active {
+		.shadow-border-inverse();
+	}
+}

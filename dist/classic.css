@@ -277,6 +277,59 @@ body {
 .grid .col1 {
   flex: 0 0 8.33333333%;
 }
+.btn,
+button {
+  border-top: solid 2px #d3d0c9;
+  border-left: solid 2px #d3d0c9;
+  border-bottom: solid 2px #404040;
+  border-right: solid 2px #404040;
+  position: relative;
+  display: inline-block;
+  min-width: 150px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+.btn:before,
+button:before {
+  content: " ";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-top: solid 2px #FFF;
+  border-left: solid 2px #FFF;
+  border-bottom: solid 2px #808080;
+  border-right: solid 2px #808080;
+}
+.btn:active,
+button:active {
+  border-top: solid 2px #808080;
+  border-left: solid 2px #808080;
+  border-bottom: solid 2px #FFF;
+  border-right: solid 2px #FFF;
+  position: relative;
+}
+.btn:active:before,
+button:active:before {
+  content: " ";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-top: solid 2px #404040;
+  border-left: solid 2px #404040;
+  border-bottom: solid 2px #d3d0c9;
+  border-right: solid 2px #d3d0c9;
+}
 .window {
   background-color: #d3d0c9;
   border-top: solid 2px #d3d0c9;
