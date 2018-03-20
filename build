@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Just run lessc on the bootstrap file
+echo "Building CSS..."
+lessc less/bootstrap.less dist/classic.css --verbose
+
+echo "Building HTML..."
+pug demo/ --out dist -P
+
+echo "Done."

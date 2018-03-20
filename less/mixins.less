@@ -1,0 +1,34 @@
+/**
+ * Borders
+ */
+.two-color-border(@colorA, @colorB) {
+	border-top: solid (1px * @s) @colorA;
+	border-left: solid (1px * @s) @colorA;
+	border-bottom: solid (1px * @s) @colorB;
+	border-right: solid (1px * @s) @colorB;
+}
+
+.four-color-border(@colorA, @colorB, @colorC, @colorD)
+{
+	.two-color-border(@colorA, @colorB);
+
+	position: relative;
+
+	&:before {
+		content: " ";
+		position: absolute;
+		z-index: 1;
+		top: 0px; left: 0px; right: 0px; bottom: 0px;
+
+		.two-color-border(@colorC, @colorD);
+	}
+}
+
+.shadow-border() {
+	.four-color-border(@color_window_background, @color_shadow_very_dark, @color_shadow_light, @color_shadow_dark);
+}
+.shadow-border-inverse() {
+	.four-color-border(@color_shadow_very_dark, @color_window_background, @color_shadow_dark, @color_shadow_light);
+}
+.bezel-border() {
+}

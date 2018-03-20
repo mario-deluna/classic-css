@@ -1,0 +1,38 @@
+.window {
+
+	background-color: @color_window_background;
+	.shadow-border();
+
+	padding: 3px * @s;
+
+	// Header
+	.window-header {
+
+		height: 17px * @s;
+
+		// background gradient
+		background-color: #a0a0a0;
+	    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjODA4MDgwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNjMGMwYzAiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+	    background-image: -webkit-gradient(linear, 0% 0%, 100% 0%,color-stop(0, rgb(128, 128, 128)),color-stop(1, rgb(192, 192, 192)));
+	    background-image: -webkit-repeating-linear-gradient(left,rgb(128, 128, 128) 0%,rgb(192, 192, 192) 100%);
+	    background-image: repeating-linear-gradient(to right,rgb(128, 128, 128) 0%,rgb(192, 192, 192) 100%);
+	    background-image: -ms-repeating-linear-gradient(left,rgb(128, 128, 128) 0%,rgb(192, 192, 192) 100%);
+
+		.window-active& {
+			background-color: #5877ad;
+		    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjMGEyNDZhIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNhNmNhZjAiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+		    background-image: -webkit-gradient(linear, 0% 0%, 100% 0%,color-stop(0, rgb(10, 36, 106)),color-stop(1, rgb(166, 202, 240)));
+		    background-image: -webkit-repeating-linear-gradient(left,rgb(10, 36, 106) 0%,rgb(166, 202, 240) 100%);
+		    background-image: repeating-linear-gradient(to right,rgb(10, 36, 106) 0%,rgb(166, 202, 240) 100%);
+		    background-image: -ms-repeating-linear-gradient(left,rgb(10, 36, 106) 0%,rgb(166, 202, 240) 100%);
+		}
+
+	    // Title
+	 	.window-header-title {
+	 		color: #fff;
+			font-size: 10px * @s;
+			line-height: 16px * @s;
+			margin-left: 2px * @s;
+	 	}
+	}
+}
