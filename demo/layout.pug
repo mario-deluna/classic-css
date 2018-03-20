@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  // parameters
+  block params
+
+  // Header
+  include includes/head.pug
+
+  // Body Base layout
+  body
+
+    #demo-window-container
+      .window.window-active
+        .window-header 
+          span.window-header-title Classic CSS explorer
+
+        .grid.grid-space
+          .col3
+            include includes/navigation.pug
+          .col
+            block content

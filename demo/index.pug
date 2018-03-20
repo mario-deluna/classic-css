@@ -1,21 +1,12 @@
-doctype html
-html(lang="en")
+extends layout.pug
 
-  // Header
-  include includes/head.pug
+block params
+  - var active='index.html'
+  - var title='Welcome'
 
-  // Body Base layout
-  body
-
-    #demo-window-container
-      .window.window-active
-        .window-header 
-          span.window-header-title Classic CSS explorer
-
-        .grid.grid-space
-          .col3
-            .window-content
-              span Some Content
-          .col
-            .window-content
-              span Some Content
+block content
+  .window-content
+    .pdn
+      h1 Welcome to Classic CSS
+      p The stylesheet that lets you create websites that look like an old windows application.
+      p Note: This does not work properly in IE...

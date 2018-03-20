@@ -1,6 +1,29 @@
 /**
  * Font
  */
+@font-face {
+  	font-family: 'px-sans-nouveaux';
+    src: url('px-sans-nouveaux.ttf.woff') format('woff'),
+	    url('px-sans-nouveaux.ttf.svg#px-sans-nouveaux') format('svg'),
+	    url('px-sans-nouveaux.ttf.eot'),
+	    url('px-sans-nouveaux.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
 	font-family: @font_familty;
+	font-size: @font_size * @s;
+	
+	// disable anti aliasing
+	font-smooth: never;
+    -webkit-font-smoothing : none;
+}
+
+
+/**
+ * Helpers
+ */
+.pdn {
+	padding: 2px * @s;
 }

@@ -1,0 +1,12 @@
+- 
+  var navitems = {
+    'index.html': 'Welcome',
+    'buttons.html': 'Buttons'
+  }
+
+.window-content
+  .tree-nav
+    ul
+      each label, doc in navitems
+        li(class={active: doc === active})
+          a(href= doc)= label

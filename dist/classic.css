@@ -196,8 +196,23 @@ th {
 /**
  * Font
  */
+@font-face {
+  font-family: 'px-sans-nouveaux';
+  src: url('px-sans-nouveaux.ttf.woff') format('woff'), url('px-sans-nouveaux.ttf.svg#px-sans-nouveaux') format('svg'), url('px-sans-nouveaux.ttf.eot'), url('px-sans-nouveaux.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
-  font-family: 'VT323', monospace;
+  font-family: 'px-sans-nouveaux', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+}
+/**
+ * Helpers
+ */
+.pdn {
+  padding: 4px;
 }
 /**
  * As simple as it could be
@@ -275,6 +290,7 @@ body {
   content: " ";
   position: absolute;
   z-index: 1;
+  pointer-events: none;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -304,9 +320,12 @@ body {
 }
 .window .window-header .window-header-title {
   color: #fff;
-  font-size: 20px;
-  line-height: 32px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  font-size: 18px;
+  line-height: 32.4px;
   margin-left: 4px;
+  float: left;
 }
 .window .window-content {
   background-color: #fff;
@@ -321,6 +340,7 @@ body {
   content: " ";
   position: absolute;
   z-index: 1;
+  pointer-events: none;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -329,6 +349,38 @@ body {
   border-left: solid 2px #404040;
   border-bottom: solid 2px #d3d0c9;
   border-right: solid 2px #d3d0c9;
+}
+.tree-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 14.4px;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 2px dotted #808080;
+}
+.tree-nav ul li {
+  margin-left: 10px;
+}
+.tree-nav ul li:before {
+  content: " ";
+  position: absolute;
+  border-top: 2px dotted #808080;
+  width: 14px;
+  margin-left: -18px;
+  margin-top: 14px;
+}
+.tree-nav ul li.active a {
+  background-color: #0a246a;
+  color: #fff;
+  border: 2px dotted #f5db95;
+}
+.tree-nav ul li a {
+  display: inline-block;
+  padding: 2px;
+  color: #000;
+  text-decoration: none;
+  border: 2px solid transparent;
 }
 body {
   background-color: #466ea1;
