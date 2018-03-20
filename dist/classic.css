@@ -223,6 +223,7 @@ body {
 }
 .window .window-header {
   height: 34px;
+  margin-bottom: 2px;
   background-color: #a0a0a0;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjODA4MDgwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNjMGMwYzAiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
   background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(0, #808080), color-stop(1, #c0c0c0));
@@ -243,6 +244,28 @@ body {
   font-size: 20px;
   line-height: 32px;
   margin-left: 4px;
+}
+.window .window-content {
+  background-color: #fff;
+  padding: 2px;
+  border-top: solid 2px #808080;
+  border-left: solid 2px #808080;
+  border-bottom: solid 2px #FFF;
+  border-right: solid 2px #FFF;
+  position: relative;
+}
+.window .window-content:before {
+  content: " ";
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-top: solid 2px #404040;
+  border-left: solid 2px #404040;
+  border-bottom: solid 2px #d3d0c9;
+  border-right: solid 2px #d3d0c9;
 }
 body {
   background-color: #466ea1;
