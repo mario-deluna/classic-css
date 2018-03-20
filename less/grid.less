@@ -1,0 +1,55 @@
+/**
+ * As simple as it could be
+ */ 
+.grid {
+
+	display: flex;
+
+	&.grid-space {
+		margin: (-2px * @s) 0 0 (-2px * @s);
+
+		.col, .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
+			padding: (2px * @s) 0 0 (2px * @s);
+		}
+	}
+
+	.col {
+		flex: 1;
+	}
+	.col12 {
+	  flex: 0 0 91.6666666667%;
+	}
+	.col10 {
+	  flex: 0 0 83.3333333333%
+	}
+	.col10 {
+	  flex: 0 0 83.3333333333%
+	}
+	.col9 {
+	  flex: 0 0 75%
+	}
+	.col8 {
+	  flex: 0 0 66.6666666667%
+	}
+	.col7 {
+	  flex: 0 0 58.3333333333%
+	}
+	.col6 {
+	  flex: 0 0 50%
+	}
+	.col5 {
+	  flex: 0 0 41.6666666667%
+	}
+	.col4 {
+	  flex: 0 0 33.3333%
+	}
+	.col3 {
+	  flex: 0 0 25%
+	}
+	.col2 {
+	  flex: 0 0 16.6666666667%
+	}
+	.col1 {
+	  flex: 0 0 8.3333333333%
+	}
+}

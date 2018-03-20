@@ -199,6 +199,69 @@ th {
 body {
   font-family: 'VT323', monospace;
 }
+/**
+ * As simple as it could be
+ */
+.grid {
+  display: flex;
+}
+.grid.grid-space {
+  margin: -4px 0 0 -4px;
+}
+.grid.grid-space .col,
+.grid.grid-space .col1,
+.grid.grid-space .col2,
+.grid.grid-space .col3,
+.grid.grid-space .col4,
+.grid.grid-space .col5,
+.grid.grid-space .col6,
+.grid.grid-space .col7,
+.grid.grid-space .col8,
+.grid.grid-space .col9,
+.grid.grid-space .col10,
+.grid.grid-space .col11,
+.grid.grid-space .col12 {
+  padding: 4px 0 0 4px;
+}
+.grid .col {
+  flex: 1;
+}
+.grid .col12 {
+  flex: 0 0 91.6666666667%;
+}
+.grid .col10 {
+  flex: 0 0 83.33333333%;
+}
+.grid .col10 {
+  flex: 0 0 83.33333333%;
+}
+.grid .col9 {
+  flex: 0 0 75%;
+}
+.grid .col8 {
+  flex: 0 0 66.66666667%;
+}
+.grid .col7 {
+  flex: 0 0 58.33333333%;
+}
+.grid .col6 {
+  flex: 0 0 50%;
+}
+.grid .col5 {
+  flex: 0 0 41.66666667%;
+}
+.grid .col4 {
+  flex: 0 0 33.3333%;
+}
+.grid .col3 {
+  flex: 0 0 25%;
+}
+.grid .col2 {
+  flex: 0 0 16.66666667%;
+}
+.grid .col1 {
+  flex: 0 0 8.33333333%;
+}
 .window {
   background-color: #d3d0c9;
   border-top: solid 2px #d3d0c9;
