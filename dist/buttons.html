@@ -4,29 +4,129 @@
   <!-- Header-->
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Title-->
     <title>Buttons – Classic CSS</title>
     <!-- Stylesheets-->
-    <link rel="stylesheet" href="classic.css?1521589998095" type="text/css">
+    <link rel="stylesheet" href="classic.css?1793276114234" type="text/css">
+    <link rel="stylesheet" href="demo.css?1793276114234" type="text/css">
+    <!-- Demo font picker, applied before the page renders-->
+    <script>
+      try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+      
+    </script>
+    <!-- Optional behaviour-->
+    <script src="classic.js?1793276114234" defer></script>
   </head>
   <!-- Body Base layout-->
   <body>
     <div id="demo-window-container">
-      <div class="window window-active">
-        <div class="window-header"> <span class="window-header-title">Classic CSS explorer – Buttons</span></div>
+      <div class="window">
+        <div class="window-header"><span class="window-header-title">Classic CSS explorer – Buttons</span><span class="window-header-controls">
+            <button class="window-minimize" aria-label="Minimize"></button>
+            <button class="window-maximize" aria-label="Maximize"></button>
+            <button class="window-close" aria-label="Close"></button></span></div>
+        <div class="toolbar toolbar-plain">
+          <label for="demo-font">Font:</label>
+          <select id="demo-font">
+            <option value="tahoma">Tahoma (Windows 2000)</option>
+            <option value="pixel">Pixel (px-sans-nouveaux)</option>
+          </select>
+          <script>
+            (function () {
+              var select = document.getElementById('demo-font');
+              var html = document.documentElement;
+              select.value = html.classList.contains('font-pixel') ? 'pixel' : 'tahoma';
+              select.addEventListener('change', function () {
+                html.classList.remove('font-tahoma', 'font-pixel');
+                html.classList.add('font-' + select.value);
+                try { localStorage.setItem('classic-font', select.value); } catch (e) {}
+              });
+            })();
+            
+          </script>
+        </div>
         <div class="grid grid-space">
           <div class="col3">
-            <div class="window-content">
-              <div class="tree-nav">
-                <ul>
-                  <li><a href="index.html">Welcome</a></li>
-                  <li class="active"><a href="buttons.html">Buttons</a></li>
-                </ul>
-              </div>
+            <div class="window-content" style="height: 100%; overflow: auto">
+              <ul class="tree-view">
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Getting started</summary>
+                    <ul>
+                      <li><a href="index.html"><span class="icon icon-document"></span>Welcome</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Controls</summary>
+                    <ul>
+                      <li class="active"><a href="buttons.html"><span class="icon icon-document"></span>Buttons</a></li>
+                      <li><a href="forms.html"><span class="icon icon-document"></span>Form controls</a></li>
+                      <li><a href="progress.html"><span class="icon icon-document"></span>Progress bars</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Windows</summary>
+                    <ul>
+                      <li><a href="window.html"><span class="icon icon-document"></span>Windows</a></li>
+                      <li><a href="menus.html"><span class="icon icon-document"></span>Menus</a></li>
+                      <li><a href="toolbar.html"><span class="icon icon-document"></span>Toolbars &amp; status bar</a></li>
+                      <li><a href="tabs.html"><span class="icon icon-document"></span>Tabs</a></li>
+                      <li><a href="dialogs.html"><span class="icon icon-document"></span>Dialogs &amp; tooltips</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Data views</summary>
+                    <ul>
+                      <li><a href="tree.html"><span class="icon icon-document"></span>Tree view</a></li>
+                      <li><a href="listview.html"><span class="icon icon-document"></span>List views</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Shell</summary>
+                    <ul>
+                      <li><a href="desktop.html"><span class="icon icon-document"></span>Desktop</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="col">
-            <div class="pdn"> <a class="btn" href="#">Button</a></div>
+            <div class="window-content pdn">
+              <div class="demo-heading">Push buttons</div>
+              <div class="demo-row">
+                <button>Button</button>
+                <button class="btn-default">OK</button>
+                <button disabled>Disabled</button><a class="btn" href="#">Link button</a>
+                <input type="submit" value="Submit">
+              </div>
+              <div class="demo-heading">Toggle buttons</div>
+              <div class="demo-row">
+                <button class="btn-toggle active">Pressed</button>
+                <button class="btn-toggle">Released</button>
+              </div>
+              <div class="demo-heading">Flat (toolbar) buttons</div>
+              <div class="demo-row">
+                <button class="btn-flat">Back</button>
+                <button class="btn-flat active">Active</button>
+                <button class="btn-flat" disabled>Disabled</button>
+              </div>
+              <div class="demo-heading">Icon buttons</div>
+              <div class="demo-row">
+                <button class="btn-icon" aria-label="Bold"><b>B</b></button>
+                <button class="btn-icon" aria-label="Italic"><i>I</i></button>
+                <button class="btn-icon btn-toggle active" aria-label="Underline"><u>U</u></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

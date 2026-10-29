@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- parameters-->
+  <!-- Header-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title-->
+    <title>List views – Classic CSS</title>
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="classic.css?1793276114324" type="text/css">
+    <link rel="stylesheet" href="demo.css?1793276114324" type="text/css">
+    <!-- Demo font picker, applied before the page renders-->
+    <script>
+      try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+      
+    </script>
+    <!-- Optional behaviour-->
+    <script src="classic.js?1793276114324" defer></script>
+  </head>
+  <!-- Body Base layout-->
+  <body>
+    <div id="demo-window-container">
+      <div class="window">
+        <div class="window-header"><span class="window-header-title">Classic CSS explorer – List views</span><span class="window-header-controls">
+            <button class="window-minimize" aria-label="Minimize"></button>
+            <button class="window-maximize" aria-label="Maximize"></button>
+            <button class="window-close" aria-label="Close"></button></span></div>
+        <div class="toolbar toolbar-plain">
+          <label for="demo-font">Font:</label>
+          <select id="demo-font">
+            <option value="tahoma">Tahoma (Windows 2000)</option>
+            <option value="pixel">Pixel (px-sans-nouveaux)</option>
+          </select>
+          <script>
+            (function () {
+              var select = document.getElementById('demo-font');
+              var html = document.documentElement;
+              select.value = html.classList.contains('font-pixel') ? 'pixel' : 'tahoma';
+              select.addEventListener('change', function () {
+                html.classList.remove('font-tahoma', 'font-pixel');
+                html.classList.add('font-' + select.value);
+                try { localStorage.setItem('classic-font', select.value); } catch (e) {}
+              });
+            })();
+            
+          </script>
+        </div>
+        <div class="grid grid-space">
+          <div class="col3">
+            <div class="window-content" style="height: 100%; overflow: auto">
+              <ul class="tree-view">
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Getting started</summary>
+                    <ul>
+                      <li><a href="index.html"><span class="icon icon-document"></span>Welcome</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Controls</summary>
+                    <ul>
+                      <li><a href="buttons.html"><span class="icon icon-document"></span>Buttons</a></li>
+                      <li><a href="forms.html"><span class="icon icon-document"></span>Form controls</a></li>
+                      <li><a href="progress.html"><span class="icon icon-document"></span>Progress bars</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Windows</summary>
+                    <ul>
+                      <li><a href="window.html"><span class="icon icon-document"></span>Windows</a></li>
+                      <li><a href="menus.html"><span class="icon icon-document"></span>Menus</a></li>
+                      <li><a href="toolbar.html"><span class="icon icon-document"></span>Toolbars &amp; status bar</a></li>
+                      <li><a href="tabs.html"><span class="icon icon-document"></span>Tabs</a></li>
+                      <li><a href="dialogs.html"><span class="icon icon-document"></span>Dialogs &amp; tooltips</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Data views</summary>
+                    <ul>
+                      <li><a href="tree.html"><span class="icon icon-document"></span>Tree view</a></li>
+                      <li class="active"><a href="listview.html"><span class="icon icon-document"></span>List views</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Shell</summary>
+                    <ul>
+                      <li><a href="desktop.html"><span class="icon icon-document"></span>Desktop</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="pdn">
+              <div class="demo-heading">Details</div>
+              <div class="listview" data-listview style="height: 180px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="sort-asc">Name</th>
+                      <th class="align-right">Size</th>
+                      <th>Type</th>
+                      <th>Modified</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="icon icon-folder"></span>system32</td>
+                      <td class="align-right"></td>
+                      <td>File Folder</td>
+                      <td>2/17/2000 12:00 PM</td>
+                    </tr>
+                    <tr>
+                      <td><span class="icon icon-folder"></span>Fonts</td>
+                      <td class="align-right"></td>
+                      <td>File Folder</td>
+                      <td>2/17/2000 12:00 PM</td>
+                    </tr>
+                    <tr class="active focus">
+                      <td><span class="icon icon-computer"></span>explorer.exe</td>
+                      <td class="align-right">230 KB</td>
+                      <td>Application</td>
+                      <td>12/7/1999 12:00 PM</td>
+                    </tr>
+                    <tr>
+                      <td><span class="icon icon-document"></span>notepad.exe</td>
+                      <td class="align-right">50 KB</td>
+                      <td>Application</td>
+                      <td>12/7/1999 12:00 PM</td>
+                    </tr>
+                    <tr>
+                      <td><span class="icon icon-document"></span>setuplog.txt</td>
+                      <td class="align-right">402 KB</td>
+                      <td>Text Document</td>
+                      <td>3/22/2018 9:41 AM</td>
+                    </tr>
+                    <tr>
+                      <td><span class="icon icon-document"></span>win.ini</td>
+                      <td class="align-right">1 KB</td>
+                      <td>Configuration Settings</td>
+                      <td>3/22/2018 9:41 AM</td>
+                    </tr>
+                    <tr>
+                      <td><span class="icon icon-document"></span>system.ini</td>
+                      <td class="align-right">1 KB</td>
+                      <td>Configuration Settings</td>
+                      <td>3/22/2018 9:41 AM</td>
+                    </tr>
+                    <tr>
+                      <td><span class="icon icon-document"></span>clock.avi</td>
+                      <td class="align-right">81 KB</td>
+                      <td>Video Clip</td>
+                      <td>12/7/1999 12:00 PM</td>
+                    </tr>
+                    <tr>
+                      <td><span class="icon icon-document"></span>Blue Lace 16.bmp</td>
+                      <td class="align-right">2 KB</td>
+                      <td>Bitmap Image</td>
+                      <td>12/7/1999 12:00 PM</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="demo-heading">Large icons</div>
+              <ul class="listview listview-icons" data-listview style="height: 150px">
+                <li><span class="icon icon-32 icon-computer"></span><span>My Computer</span></li>
+                <li class="active"><span class="icon icon-32 icon-folder"></span><span>My Documents</span></li>
+                <li><span class="icon icon-32 icon-globe"></span><span>My Network Places</span></li>
+                <li><span class="icon icon-32 icon-recycle-bin"></span><span>Recycle Bin</span></li>
+                <li><span class="icon icon-32 icon-document"></span><span>readme.txt</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

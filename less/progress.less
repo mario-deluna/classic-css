@@ -1,0 +1,62 @@
+/**
+ * Progress bar
+ *
+ *   <progress value="40" max="100"></progress>
+ *   <div class="progress"><div class="progress-bar" style="width: 40%"></div></div>
+ */
+.progress-blocks() {
+	background-image: repeating-linear-gradient(to right,
+		@color_highlight 0, @color_highlight (8px * @s),
+		transparent (8px * @s), transparent (10px * @s));
+}
+
+progress, .progress {
+	.sunken-thin();
+
+	-webkit-appearance: none;
+	appearance: none;
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	height: 18px * @s;
+	padding: (2 * @bw);
+	border: 0;
+	background-color: @color_button_face;
+	color: @color_highlight;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+// native element
+progress {
+	&::-webkit-progress-bar {
+		background: transparent;
+	}
+	&::-webkit-progress-value {
+		.progress-blocks();
+		background-color: transparent;
+	}
+	&::-moz-progress-bar {
+		.progress-blocks();
+		background-color: transparent;
+	}
+}
+
+.progress-bar {
+	height: 100%;
+	.progress-blocks();
+}
+
+// continuous bar as used for the file copy dialog in Windows 2000
+.progress-smooth {
+	.progress-bar {
+		background: @color_highlight;
+	}
+
+	&::-webkit-progress-value {
+		background: @color_highlight;
+	}
+	&::-moz-progress-bar {
+		background: @color_highlight;
+	}
+}

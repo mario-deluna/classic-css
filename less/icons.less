@@ -1,0 +1,46 @@
+/**
+ * A small set of system icons
+ *
+ *   <span class="icon icon-folder"></span>        16 x 16
+ *   <span class="icon icon-32 icon-folder"></span> 32 x 32
+ */
+.icon-svg(@body) {
+	background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'>@{body}</svg>");
+}
+
+.icon {
+	display: inline-block;
+	flex-shrink: 0;
+	width: 16px * @s;
+	height: 16px * @s;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+
+	&.icon-32 {
+		width: 32px * @s;
+		height: 32px * @s;
+	}
+}
+
+.icon-folder {
+	.icon-svg("<path d='M2 7h10l3 3h15v18H2z' fill='%23fc0' stroke='%23806000'/><path d='M3 11h26' stroke='%23fff0a0' stroke-width='2'/>");
+}
+.icon-folder-open {
+	.icon-svg("<path d='M2 7h10l3 3h11v5H8L2 27z' fill='%23fc0' stroke='%23806000'/><path d='M8 15h23l-6 13H2z' fill='%23ffe680' stroke='%23806000'/>");
+}
+.icon-document {
+	.icon-svg("<path d='M7 2h13l6 6v22H7z' fill='%23fff' stroke='%23000'/><path d='M20 2v6h6' fill='none' stroke='%23000'/><path d='M10 13h12M10 17h12M10 21h12M10 25h8' stroke='%23808080'/>");
+}
+.icon-computer {
+	.icon-svg("<rect x='4.5' y='2.5' width='23' height='18' fill='%23d4d0c8' stroke='%23000'/><rect x='7' y='5' width='18' height='13' fill='%23008080'/><path d='M10.5 20.5h11v3h-11z' fill='%23d4d0c8' stroke='%23000'/><rect x='2.5' y='23.5' width='27' height='6' fill='%23d4d0c8' stroke='%23000'/><path d='M20 26.5h6' stroke='%23808080'/>");
+}
+.icon-recycle-bin {
+	.icon-svg("<path d='M7 9h18l-2 20H9z' fill='%23d4d0c8' stroke='%23000'/><path d='M5.5 5.5h21v3h-21z' fill='%23fff' stroke='%23000'/><path d='M12 12l1 14M16 12v14M20 12l-1 14' stroke='%23808080'/>");
+}
+.icon-globe {
+	.icon-svg("<circle cx='16' cy='16' r='13' fill='%2339f' stroke='%23000'/><path d='M7 8c4 0 6 3 4 6s3 5 0 10M21 4c-2 3 1 6 5 5s2 6-2 8' fill='none' stroke='%2300a000' stroke-width='3'/>");
+}
+.icon-windows {
+	.icon-svg("<path d='M4 6c3-2 6-2 9 0v8c-3-2-6-2-9 0z' fill='%23f00'/><path d='M15 6c3 2 6 2 9 0v8c-3 2-6 2-9 0z' fill='%2300a000'/><path d='M4 16c3-2 6-2 9 0v8c-3-2-6-2-9 0z' fill='%2300f'/><path d='M15 16c3 2 6 2 9 0v8c-3 2-6 2-9 0z' fill='%23fc0'/>");
+}

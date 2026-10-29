@@ -1,0 +1,30 @@
+/**
+ * Styles for the demo pages only, not part of classic.css
+ */
+body {
+  background-color: #466ea1;
+}
+#demo-window-container {
+  width: 100%;
+  height: 100%;
+}
+#demo-window-container > .window {
+  margin: 5%;
+}
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 9px;
+}
+.demo-stack > * + * {
+  margin-top: 9px;
+}
+.demo-heading {
+  font-weight: bold;
+  margin: 12px 0 6px;
+}
+.demo-heading:first-child {
+  margin-top: 0;
+}

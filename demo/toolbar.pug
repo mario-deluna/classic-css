@@ -1,0 +1,53 @@
+extends layout.pug
+include mixins/window.pug
+
+block params
+  - var active='toolbar.html'
+  - var title='Toolbars & status bar'
+
+block content
+  .pdn.demo-stack
+    +window('C:\\WINNT', {icon: 'folder-open'})
+      ul.menubar
+        li.menubar-item(tabindex='0') <u>F</u>ile
+        li.menubar-item(tabindex='0') <u>E</u>dit
+        li.menubar-item(tabindex='0') <u>V</u>iew
+        li.menubar-item(tabindex='0') F<u>a</u>vorites
+        li.menubar-item(tabindex='0') <u>T</u>ools
+        li.menubar-item(tabindex='0') <u>H</u>elp
+      .rebar
+        .toolbar
+          button Back
+          button(disabled) Forward
+          button Up
+          span.toolbar-separator
+          button.btn-toggle.active Folders
+          button History
+          span.toolbar-separator
+          button.toolbar-button-large
+            span.icon.icon-globe
+            | Internet
+        .toolbar
+          label A<u>d</u>dress
+          select.toolbar-fill
+            option C:\WINNT
+          button Go
+      .window-content(style='height: 120px')
+      .statusbar
+        span.statusbar-panel 42 object(s) (plus 3 hidden)
+        span.statusbar-panel 1.94 MB
+        span.statusbar-panel
+          span.icon.icon-computer
+          | My Computer
+        span.statusbar-grip
+
+    .demo-heading Formatting toolbar
+    .toolbar
+      select(style='width: 140px')
+        option Times New Roman
+      select(style='width: 50px')
+        option 10
+      span.toolbar-separator
+      button.btn-toggle.active(aria-label='Bold') <b>B</b>
+      button.btn-toggle(aria-label='Italic') <i>I</i>
+      button.btn-toggle(aria-label='Underline') <u>U</u>

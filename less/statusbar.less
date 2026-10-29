@@ -1,0 +1,50 @@
+/**
+ * Status bar
+ *
+ *   <div class="statusbar">
+ *     <span class="statusbar-panel">3 object(s)</span>
+ *     <span class="statusbar-panel">1.2 MB</span>
+ *     <span class="statusbar-grip"></span>
+ *   </div>
+ */
+.statusbar {
+	display: flex;
+	align-items: stretch;
+	gap: 2px * @s;
+	height: 20px * @s;
+	padding-top: 2px * @s;
+	background-color: @color_button_face;
+	white-space: nowrap;
+}
+
+.statusbar-panel {
+	.sunken-thin();
+
+	display: flex;
+	align-items: center;
+	padding: 0 (4px * @s);
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	// the first panel takes the remaining space
+	&:first-child {
+		flex: 1;
+		min-width: 0;
+	}
+
+	img, .icon {
+		width: 16px * @s;
+		height: 16px * @s;
+		margin-right: 3px * @s;
+		image-rendering: pixelated;
+	}
+}
+
+.statusbar-grip {
+	flex-shrink: 0;
+	align-self: flex-end;
+	width: 12px * @s;
+	height: 12px * @s;
+	cursor: nwse-resize;
+	.glyph-resize-grip();
+}

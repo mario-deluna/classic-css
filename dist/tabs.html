@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- parameters-->
+  <!-- Header-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title-->
+    <title>Tabs – Classic CSS</title>
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="classic.css?1793276114358" type="text/css">
+    <link rel="stylesheet" href="demo.css?1793276114358" type="text/css">
+    <!-- Demo font picker, applied before the page renders-->
+    <script>
+      try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+      
+    </script>
+    <!-- Optional behaviour-->
+    <script src="classic.js?1793276114358" defer></script>
+  </head>
+  <!-- Body Base layout-->
+  <body>
+    <div id="demo-window-container">
+      <div class="window">
+        <div class="window-header"><span class="window-header-title">Classic CSS explorer – Tabs</span><span class="window-header-controls">
+            <button class="window-minimize" aria-label="Minimize"></button>
+            <button class="window-maximize" aria-label="Maximize"></button>
+            <button class="window-close" aria-label="Close"></button></span></div>
+        <div class="toolbar toolbar-plain">
+          <label for="demo-font">Font:</label>
+          <select id="demo-font">
+            <option value="tahoma">Tahoma (Windows 2000)</option>
+            <option value="pixel">Pixel (px-sans-nouveaux)</option>
+          </select>
+          <script>
+            (function () {
+              var select = document.getElementById('demo-font');
+              var html = document.documentElement;
+              select.value = html.classList.contains('font-pixel') ? 'pixel' : 'tahoma';
+              select.addEventListener('change', function () {
+                html.classList.remove('font-tahoma', 'font-pixel');
+                html.classList.add('font-' + select.value);
+                try { localStorage.setItem('classic-font', select.value); } catch (e) {}
+              });
+            })();
+            
+          </script>
+        </div>
+        <div class="grid grid-space">
+          <div class="col3">
+            <div class="window-content" style="height: 100%; overflow: auto">
+              <ul class="tree-view">
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Getting started</summary>
+                    <ul>
+                      <li><a href="index.html"><span class="icon icon-document"></span>Welcome</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Controls</summary>
+                    <ul>
+                      <li><a href="buttons.html"><span class="icon icon-document"></span>Buttons</a></li>
+                      <li><a href="forms.html"><span class="icon icon-document"></span>Form controls</a></li>
+                      <li><a href="progress.html"><span class="icon icon-document"></span>Progress bars</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Windows</summary>
+                    <ul>
+                      <li><a href="window.html"><span class="icon icon-document"></span>Windows</a></li>
+                      <li><a href="menus.html"><span class="icon icon-document"></span>Menus</a></li>
+                      <li><a href="toolbar.html"><span class="icon icon-document"></span>Toolbars &amp; status bar</a></li>
+                      <li class="active"><a href="tabs.html"><span class="icon icon-document"></span>Tabs</a></li>
+                      <li><a href="dialogs.html"><span class="icon icon-document"></span>Dialogs &amp; tooltips</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Data views</summary>
+                    <ul>
+                      <li><a href="tree.html"><span class="icon icon-document"></span>Tree view</a></li>
+                      <li><a href="listview.html"><span class="icon icon-document"></span>List views</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Shell</summary>
+                    <ul>
+                      <li><a href="desktop.html"><span class="icon icon-document"></span>Desktop</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="pdn demo-row" style="align-items: flex-start">
+              <div class="window window-dialog" style="width: 520px">
+                <div class="window-header"><span class="window-header-title">Display Properties</span><span class="window-header-controls">
+                    <button class="window-help" aria-label="Help"></button>
+                    <button class="window-close" aria-label="Close"></button></span>
+                </div>
+                <div class="window-body">
+                  <div class="tabs" data-tabs>
+                    <div class="tab-list" role="tablist">
+                      <button class="tab" role="tab" aria-selected="true">Background</button>
+                      <button class="tab" role="tab">Screen Saver</button>
+                      <button class="tab" role="tab">Appearance</button>
+                      <button class="tab" role="tab">Settings</button>
+                    </div>
+                    <div class="tab-panel" role="tabpanel">
+                      <div class="field-row-stacked">
+                        <label>Wallpaper</label>
+                        <ul class="listbox" style="height: 100px">
+                          <li class="active">(None)</li>
+                          <li>Blue Lace 16</li>
+                          <li>Coffee Bean</li>
+                          <li>Fall Memories</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="tab-panel" role="tabpanel" hidden>
+                      <div class="field-row">
+                        <label>Screen saver:</label>
+                        <select>
+                          <option>(None)</option>
+                          <option>3D Pipes</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="tab-panel" role="tabpanel" hidden>
+                      <p>Appearance settings.</p>
+                    </div>
+                    <div class="tab-panel" role="tabpanel" hidden>
+                      <p>Settings.</p>
+                    </div>
+                  </div>
+                  <div class="button-row button-row-right">
+                    <button class="btn-default">OK</button>
+                    <button>Cancel</button>
+                    <button disabled>Apply</button>
+                  </div>
+                </div>
+              </div>
+              <div style="width: 320px">
+                <div class="demo-heading">CSS only (radio inputs)</div>
+                <div class="tabs tabs-radio">
+                  <input id="tr1" type="radio" name="tr" checked>
+                  <label class="tab" for="tr1">General</label>
+                  <input id="tr2" type="radio" name="tr">
+                  <label class="tab" for="tr2">Sharing</label>
+                  <input id="tr3" type="radio" name="tr">
+                  <label class="tab" for="tr3">Security</label>
+                  <div class="tab-panel">
+                    <p>General settings.</p>
+                  </div>
+                  <div class="tab-panel">
+                    <div class="field-row">
+                      <input id="share" type="checkbox">
+                      <label for="share">Share this folder</label>
+                    </div>
+                  </div>
+                  <div class="tab-panel">
+                    <p>Security settings.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

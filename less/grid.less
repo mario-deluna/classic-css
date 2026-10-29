@@ -1,6 +1,6 @@
 /**
  * As simple as it could be
- */ 
+ */
 .grid {
 
 	display: flex;
@@ -13,43 +13,19 @@
 		}
 	}
 
+	> * {
+		min-width: 0;
+	}
+
 	.col {
 		flex: 1;
 	}
-	.col12 {
-	  flex: 0 0 91.6666666667%;
+
+	.col-loop(@i) when (@i > 0) {
+		.col@{i} {
+			flex: 0 0 percentage((@i / 12));
+		}
+		.col-loop(@i - 1);
 	}
-	.col10 {
-	  flex: 0 0 83.3333333333%
-	}
-	.col10 {
-	  flex: 0 0 83.3333333333%
-	}
-	.col9 {
-	  flex: 0 0 75%
-	}
-	.col8 {
-	  flex: 0 0 66.6666666667%
-	}
-	.col7 {
-	  flex: 0 0 58.3333333333%
-	}
-	.col6 {
-	  flex: 0 0 50%
-	}
-	.col5 {
-	  flex: 0 0 41.6666666667%
-	}
-	.col4 {
-	  flex: 0 0 33.3333%
-	}
-	.col3 {
-	  flex: 0 0 25%
-	}
-	.col2 {
-	  flex: 0 0 16.6666666667%
-	}
-	.col1 {
-	  flex: 0 0 8.3333333333%
-	}
+	.col-loop(12);
 }

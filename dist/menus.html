@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- parameters-->
+  <!-- Header-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title-->
+    <title>Menus – Classic CSS</title>
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="classic.css?1793276114337" type="text/css">
+    <link rel="stylesheet" href="demo.css?1793276114337" type="text/css">
+    <!-- Demo font picker, applied before the page renders-->
+    <script>
+      try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+      
+    </script>
+    <!-- Optional behaviour-->
+    <script src="classic.js?1793276114337" defer></script>
+  </head>
+  <!-- Body Base layout-->
+  <body>
+    <div id="demo-window-container">
+      <div class="window">
+        <div class="window-header"><span class="window-header-title">Classic CSS explorer – Menus</span><span class="window-header-controls">
+            <button class="window-minimize" aria-label="Minimize"></button>
+            <button class="window-maximize" aria-label="Maximize"></button>
+            <button class="window-close" aria-label="Close"></button></span></div>
+        <div class="toolbar toolbar-plain">
+          <label for="demo-font">Font:</label>
+          <select id="demo-font">
+            <option value="tahoma">Tahoma (Windows 2000)</option>
+            <option value="pixel">Pixel (px-sans-nouveaux)</option>
+          </select>
+          <script>
+            (function () {
+              var select = document.getElementById('demo-font');
+              var html = document.documentElement;
+              select.value = html.classList.contains('font-pixel') ? 'pixel' : 'tahoma';
+              select.addEventListener('change', function () {
+                html.classList.remove('font-tahoma', 'font-pixel');
+                html.classList.add('font-' + select.value);
+                try { localStorage.setItem('classic-font', select.value); } catch (e) {}
+              });
+            })();
+            
+          </script>
+        </div>
+        <div class="grid grid-space">
+          <div class="col3">
+            <div class="window-content" style="height: 100%; overflow: auto">
+              <ul class="tree-view">
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Getting started</summary>
+                    <ul>
+                      <li><a href="index.html"><span class="icon icon-document"></span>Welcome</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Controls</summary>
+                    <ul>
+                      <li><a href="buttons.html"><span class="icon icon-document"></span>Buttons</a></li>
+                      <li><a href="forms.html"><span class="icon icon-document"></span>Form controls</a></li>
+                      <li><a href="progress.html"><span class="icon icon-document"></span>Progress bars</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Windows</summary>
+                    <ul>
+                      <li><a href="window.html"><span class="icon icon-document"></span>Windows</a></li>
+                      <li class="active"><a href="menus.html"><span class="icon icon-document"></span>Menus</a></li>
+                      <li><a href="toolbar.html"><span class="icon icon-document"></span>Toolbars &amp; status bar</a></li>
+                      <li><a href="tabs.html"><span class="icon icon-document"></span>Tabs</a></li>
+                      <li><a href="dialogs.html"><span class="icon icon-document"></span>Dialogs &amp; tooltips</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Data views</summary>
+                    <ul>
+                      <li><a href="tree.html"><span class="icon icon-document"></span>Tree view</a></li>
+                      <li><a href="listview.html"><span class="icon icon-document"></span>List views</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Shell</summary>
+                    <ul>
+                      <li><a href="desktop.html"><span class="icon icon-document"></span>Desktop</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="pdn demo-stack">
+              <div class="window">
+                <div class="window-header"><span class="window-header-icon icon icon-document"></span><span class="window-header-title">Untitled - Notepad</span><span class="window-header-controls">
+                    <button class="window-minimize" aria-label="Minimize"></button>
+                    <button class="window-maximize" aria-label="Maximize"></button>
+                    <button class="window-close" aria-label="Close"></button></span>
+                </div>
+                <ul class="menubar" data-menubar>
+                  <li class="menubar-item" tabindex="0"><u>F</u>ile
+                    <ul class="menu">
+                      <li><u>N</u>ew <span class="menu-shortcut">Ctrl+N</span></li>
+                      <li><u>O</u>pen… <span class="menu-shortcut">Ctrl+O</span></li>
+                      <li><u>S</u>ave <span class="menu-shortcut">Ctrl+S</span></li>
+                      <li>Save <u>A</u>s…</li>
+                      <li class="menu-separator"></li>
+                      <li class="menu-submenu">Sen<u>d</u> To
+                        <ul class="menu">
+                          <li>Desktop (create shortcut)</li>
+                          <li>Mail Recipient</li>
+                          <li>My Documents</li>
+                        </ul>
+                      </li>
+                      <li class="menu-separator"></li>
+                      <li>E<u>x</u>it</li>
+                    </ul>
+                  </li>
+                  <li class="menubar-item" tabindex="0"><u>E</u>dit
+                    <ul class="menu">
+                      <li class="disabled"><u>U</u>ndo <span class="menu-shortcut">Ctrl+Z</span></li>
+                      <li class="menu-separator"></li>
+                      <li>Cu<u>t</u> <span class="menu-shortcut">Ctrl+X</span></li>
+                      <li><u>C</u>opy <span class="menu-shortcut">Ctrl+C</span></li>
+                      <li><u>P</u>aste <span class="menu-shortcut">Ctrl+V</span></li>
+                    </ul>
+                  </li>
+                  <li class="menubar-item" tabindex="0"><u>V</u>iew
+                    <ul class="menu">
+                      <li class="menu-checked"><u>S</u>tatus Bar</li>
+                      <li class="menu-separator"></li>
+                      <li class="menu-radio-checked">Lar<u>g</u>e Icons</li>
+                      <li>S<u>m</u>all Icons</li>
+                      <li><u>D</u>etails</li>
+                    </ul>
+                  </li>
+                  <li class="menubar-item" tabindex="0"><u>H</u>elp
+                    <ul class="menu">
+                      <li><u>A</u>bout Notepad</li>
+                    </ul>
+                  </li>
+                </ul>
+                <textarea style="width: 100%; height: 220px"></textarea>
+              </div>
+              <div class="demo-heading">Context menu (right click, needs classic.js)</div>
+              <div class="window-content pdn" data-contextmenu="#ctx" style="height: 60px">Right click me</div>
+              <ul class="menu" id="ctx">
+                <li class="menu-default"><u>O</u>pen</li>
+                <li class="menu-separator"></li>
+                <li class="menu-submenu"><u>N</u>ew
+                  <ul class="menu">
+                    <li><u>F</u>older</li>
+                    <li>Text Document</li>
+                  </ul>
+                </li>
+                <li class="menu-separator"></li>
+                <li>P<u>r</u>operties</li>
+              </ul>
+              <div class="demo-heading">Context menu (static)</div>
+              <ul class="menu" style="display: inline-block">
+                <li class="menu-default"><u>O</u>pen</li>
+                <li><u>E</u>xplore</li>
+                <li class="active"><u>F</u>ind…</li>
+                <li class="menu-separator"></li>
+                <li class="menu-submenu">Se<u>n</u>d To</li>
+                <li class="menu-separator"></li>
+                <li class="disabled">Cu<u>t</u></li>
+                <li><u>C</u>opy</li>
+                <li class="menu-separator"></li>
+                <li>P<u>r</u>operties</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

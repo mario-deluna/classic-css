@@ -1,12 +1,40 @@
 - 
-  var navitems = {
-    'index.html': 'Welcome',
-    'buttons.html': 'Buttons'
+  var navgroups = {
+    'Getting started': {
+      'index.html': 'Welcome'
+    },
+    'Controls': {
+      'buttons.html': 'Buttons',
+      'forms.html': 'Form controls',
+      'progress.html': 'Progress bars'
+    },
+    'Windows': {
+      'window.html': 'Windows',
+      'menus.html': 'Menus',
+      'toolbar.html': 'Toolbars & status bar',
+      'tabs.html': 'Tabs',
+      'dialogs.html': 'Dialogs & tooltips'
+    },
+    'Data views': {
+      'tree.html': 'Tree view',
+      'listview.html': 'List views'
+    },
+    'Shell': {
+      'desktop.html': 'Desktop'
+    }
   }
 
-.window-content
-  .tree-nav
-    ul
-      each label, doc in navitems
-        li(class={active: doc === active})
-          a(href= doc)= label
+.window-content(style='height: 100%; overflow: auto')
+  ul.tree-view
+    each items, group in navgroups
+      li
+        details(open)
+          summary
+            span.icon.icon-folder
+            | #{group}
+          ul
+            each label, doc in items
+              li(class={active: doc === active})
+                a(href= doc)
+                  span.icon.icon-document
+                  | #{label}

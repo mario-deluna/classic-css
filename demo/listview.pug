@@ -1,0 +1,44 @@
+extends layout.pug
+
+block params
+  - var active='listview.html'
+  - var title='List views'
+
+block content
+  .pdn
+    .demo-heading Details
+    .listview(data-listview, style='height: 180px')
+      table
+        thead
+          tr
+            th.sort-asc Name
+            th.align-right Size
+            th Type
+            th Modified
+        tbody
+          each f, i in [['system32', '', 'File Folder', '2/17/2000 12:00 PM', 'folder'], ['Fonts', '', 'File Folder', '2/17/2000 12:00 PM', 'folder'], ['explorer.exe', '230 KB', 'Application', '12/7/1999 12:00 PM', 'computer'], ['notepad.exe', '50 KB', 'Application', '12/7/1999 12:00 PM', 'document'], ['setuplog.txt', '402 KB', 'Text Document', '3/22/2018 9:41 AM', 'document'], ['win.ini', '1 KB', 'Configuration Settings', '3/22/2018 9:41 AM', 'document'], ['system.ini', '1 KB', 'Configuration Settings', '3/22/2018 9:41 AM', 'document'], ['clock.avi', '81 KB', 'Video Clip', '12/7/1999 12:00 PM', 'document'], ['Blue Lace 16.bmp', '2 KB', 'Bitmap Image', '12/7/1999 12:00 PM', 'document']]
+            tr(class={active: i === 2, focus: i === 2})
+              td
+                span.icon(class='icon-' + f[4])
+                | #{f[0]}
+              td.align-right= f[1]
+              td= f[2]
+              td= f[3]
+
+    .demo-heading Large icons
+    ul.listview.listview-icons(data-listview, style='height: 150px')
+      li
+        span.icon.icon-32.icon-computer
+        span My Computer
+      li.active
+        span.icon.icon-32.icon-folder
+        span My Documents
+      li
+        span.icon.icon-32.icon-globe
+        span My Network Places
+      li
+        span.icon.icon-32.icon-recycle-bin
+        span Recycle Bin
+      li
+        span.icon.icon-32.icon-document
+        span readme.txt

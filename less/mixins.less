@@ -1,35 +1,108 @@
 /**
- * Borders
+ * Bevels
+ *
+ * Drawn with inset box-shadows instead of borders so they also work on
+ * replaced elements like <input> and leave :before / :after free.
+ * Elements using them need padding of at least 2 * @bw.
  */
-.two-color-border(@colorA, @colorB) {
-	border-top: solid (1px * @s) @colorA;
-	border-left: solid (1px * @s) @colorA;
-	border-bottom: solid (1px * @s) @colorB;
-	border-right: solid (1px * @s) @colorB;
+.bevel(@outerTL, @outerBR, @innerTL, @innerBR) {
+	box-shadow:
+		inset (-@bw) (-@bw) @outerBR,
+		inset @bw @bw @outerTL,
+		inset (-2 * @bw) (-2 * @bw) @innerBR,
+		inset (2 * @bw) (2 * @bw) @innerTL;
 }
 
-.four-color-border(@colorA, @colorB, @colorC, @colorD)
-{
-	.two-color-border(@colorA, @colorB);
-
-	position: relative;
-
-	&:before {
-		content: " ";
-		position: absolute;
-		z-index: 1;
-		pointer-events: none; 
-		top: 0px; left: 0px; right: 0px; bottom: 0px;
-
-		.two-color-border(@colorC, @colorD);
-	}
+// window frames, menus, panels
+.raised() {
+	.bevel(@color_button_face, @color_shadow_very_dark, @color_shadow_light, @color_shadow_dark);
 }
 
-.shadow-border() {
-	.four-color-border(@color_window_background, @color_shadow_very_dark, @color_shadow_light, @color_shadow_dark);
+// buttons, slightly brighter outer edge
+.raised-button() {
+	.bevel(@color_shadow_light, @color_shadow_very_dark, @color_button_face, @color_shadow_dark);
 }
-.shadow-border-inverse() {
-	.four-color-border(@color_shadow_dark, @color_shadow_light, @color_shadow_very_dark, @color_window_background);
+
+// text fields, list boxes, content areas
+.sunken() {
+	.bevel(@color_shadow_dark, @color_shadow_light, @color_shadow_very_dark, @color_button_face);
 }
-.bezel-border() {
+
+// the sunken bevel as a real border, for anything that scrolls: scrolled
+// content and scrollbars would otherwise paint over the box-shadow lines
+.sunken-border() {
+	border: solid (2 * @bw) transparent;
+	border-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' shape-rendering='crispEdges'><path fill='%23808080' d='M0 0h4v1h-4zM0 1h1v3h-1z'/><path fill='%23fff' d='M4 0h1v5h-1zM0 4h4v1h-4z'/><path fill='%23404040' d='M1 1h2v1h-2zM1 2h1v2h-1z'/><path fill='%23d4d0c8' d='M3 1h1v3h-1zM2 3h1v1h-1z'/></svg>") 2 / (2 * @bw);
+	box-shadow: none;
+	image-rendering: pixelated;
+}
+
+// a pressed down button
+.pressed() {
+	.bevel(@color_shadow_very_dark, @color_shadow_light, @color_shadow_dark, @color_button_face);
+}
+
+// single line bevels for status bar panels, toolbar hovers etc.
+.raised-thin() {
+	box-shadow: inset (-@bw) (-@bw) @color_shadow_dark, inset @bw @bw @color_shadow_light;
+}
+.sunken-thin() {
+	box-shadow: inset (-@bw) (-@bw) @color_shadow_light, inset @bw @bw @color_shadow_dark;
+}
+
+// the groove around group boxes, a 9-slice image so a <legend> can cut it
+.etched-border() {
+	border: solid (2 * @bw) transparent;
+	border-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5' shape-rendering='crispEdges'><path fill='%23808080' d='M0 0h4v1h-4zM0 1h1v3h-1zM3 1h1v2h-1zM1 3h3v1h-3z'/><path fill='%23fff' d='M4 0h1v5h-1zM0 4h4v1h-4zM1 1h2v1h-2zM1 2h1v1h-1z'/></svg>") 2 / (2 * @bw);
+	image-rendering: pixelated;
+}
+
+// kept for backwards compatibility
+.shadow-border() { .raised(); }
+.shadow-border-inverse() { .sunken(); }
+
+/**
+ * States
+ */
+.focus-rect(@offset: -4px) {
+	outline: dotted @bw @color_text;
+	outline-offset: @offset * @s;
+}
+
+.disabled-text() {
+	color: @color_disabled_text;
+	text-shadow: @bw @bw @color_shadow_light;
+}
+
+.highlighted() {
+	background-color: @color_highlight;
+	color: @color_highlight_text;
+}
+
+// the 50% white dither used for pressed toggles and scrollbar tracks
+.dither(@color: @color_shadow_light, @base: @color_button_face) {
+	background-color: @base;
+	background-image: linear-gradient(45deg, @color 25%, transparent 25%, transparent 75%, @color 75%),
+		linear-gradient(45deg, @color 25%, transparent 25%, transparent 75%, @color 75%);
+	background-size: (2 * @bw) (2 * @bw);
+	background-position: 0 0, @bw @bw;
+}
+
+/**
+ * Icons
+ *
+ * Pixel glyphs as inline SVG. Pass the viewBox size in pixels and the SVG
+ * body with single quotes and %23 instead of #. The image is drawn at
+ * @w x @h scaled by @s so it lines up with the rest of the UI.
+ */
+.pixel-icon(@w, @h, @body) {
+	background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='@{w}' height='@{h}' viewBox='0 0 @{w} @{h}' shape-rendering='crispEdges'>@{body}</svg>");
+	background-repeat: no-repeat;
+	background-size: (@w * @s * 1px) (@h * @s * 1px);
+	image-rendering: pixelated;
+}
+
+.title-gradient(@a, @b) {
+	background-color: @a;
+	background-image: linear-gradient(to right, @a, @b);
 }

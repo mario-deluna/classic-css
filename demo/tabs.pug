@@ -1,0 +1,57 @@
+extends layout.pug
+include mixins/window.pug
+
+block params
+  - var active='tabs.html'
+  - var title='Tabs'
+
+block content
+  .pdn.demo-row(style='align-items: flex-start')
+    +window('Display Properties', {dialog: true, help: true, class: 'window-dialog', style: 'width: 520px'})
+      .window-body
+        .tabs(data-tabs)
+          .tab-list(role='tablist')
+            button.tab(role='tab', aria-selected='true') Background
+            button.tab(role='tab') Screen Saver
+            button.tab(role='tab') Appearance
+            button.tab(role='tab') Settings
+          .tab-panel(role='tabpanel')
+            .field-row-stacked
+              label Wallpaper
+              ul.listbox(style='height: 100px')
+                li.active (None)
+                li Blue Lace 16
+                li Coffee Bean
+                li Fall Memories
+          .tab-panel(role='tabpanel', hidden)
+            .field-row
+              label Screen saver:
+              select
+                option (None)
+                option 3D Pipes
+          .tab-panel(role='tabpanel', hidden)
+            p Appearance settings.
+          .tab-panel(role='tabpanel', hidden)
+            p Settings.
+        .button-row.button-row-right
+          button.btn-default OK
+          button Cancel
+          button(disabled) Apply
+
+    div(style='width: 320px')
+      .demo-heading CSS only (radio inputs)
+      .tabs.tabs-radio
+        input#tr1(type='radio', name='tr', checked)
+        label.tab(for='tr1') General
+        input#tr2(type='radio', name='tr')
+        label.tab(for='tr2') Sharing
+        input#tr3(type='radio', name='tr')
+        label.tab(for='tr3') Security
+        .tab-panel
+          p General settings.
+        .tab-panel
+          .field-row
+            input#share(type='checkbox')
+            label(for='share') Share this folder
+        .tab-panel
+          p Security settings.

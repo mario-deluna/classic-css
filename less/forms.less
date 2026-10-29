@@ -1,0 +1,496 @@
+/**
+ * Text fields
+ */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="date"],
+input:not([type]),
+textarea,
+.field {
+
+	.sunken();
+
+	-webkit-appearance: none;
+	appearance: none;
+	height: 21px * @s;
+	padding: (3px * @s) (4px * @s);
+	border: 0;
+	border-radius: 0;
+	background-color: @color_field;
+	color: @color_text;
+	font: inherit;
+	line-height: normal;
+	vertical-align: middle;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:disabled, &[readonly], &.disabled {
+		background-color: @color_button_face;
+	}
+	&:disabled, &.disabled {
+		color: @color_disabled_text;
+	}
+
+	&::selection {
+		.highlighted();
+	}
+}
+
+textarea {
+	.sunken-border();
+	height: auto;
+	min-height: 21px * @s;
+	padding: ((3px * @s) - (2 * @bw)) ((4px * @s) - (2 * @bw));
+	resize: none;
+}
+
+// hide the native number arrows, use .spinner instead
+input[type="number"] {
+	-moz-appearance: textfield;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+}
+
+/**
+ * Checkboxes & radios
+ *
+ *   <input type="checkbox" id="a"><label for="a">Label</label>
+ */
+input[type="checkbox"],
+input[type="radio"] {
+
+	-webkit-appearance: none;
+	appearance: none;
+	width: 13px * @s;
+	height: 13px * @s;
+	margin: 0 (4px * @s) 0 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	vertical-align: middle;
+	flex-shrink: 0;
+
+	&:focus {
+		outline: none;
+	}
+
+	// the focus rect is drawn around the label
+	&:focus-visible + label {
+		outline: dotted @bw @color_text;
+	}
+
+	&:disabled + label {
+		.disabled-text();
+	}
+}
+
+input[type="checkbox"] {
+	.sunken();
+	background-color: @color_field;
+
+	&:checked {
+		.glyph-check();
+		background-position: center;
+	}
+
+	&:indeterminate {
+		.glyph-check("%23808080");
+		background-position: center;
+	}
+
+	&:active, &:disabled {
+		background-color: @color_button_face;
+	}
+
+	&:disabled:checked {
+		.glyph-check("%23808080");
+		background-position: center;
+	}
+}
+
+input[type="radio"] {
+	width: 12px * @s;
+	height: 12px * @s;
+	.glyph-radio();
+
+	&:checked {
+		.glyph-radio-checked();
+	}
+
+	&:active, &:disabled {
+		.glyph-radio(@field: "%23d4d0c8");
+	}
+
+	&:disabled:checked {
+		.glyph-radio-checked(@field: "%23d4d0c8", @c: "%23808080");
+	}
+}
+
+/**
+ * Label + control rows
+ */
+.field-row {
+	display: flex;
+	align-items: center;
+	gap: 4px * @s;
+
+	& + & {
+		margin-top: 4px * @s;
+	}
+
+	label {
+		padding: 0 @bw;
+	}
+}
+
+.field-row-stacked {
+	display: flex;
+	flex-direction: column;
+	gap: 2px * @s;
+
+	& + & {
+		margin-top: 6px * @s;
+	}
+}
+
+/**
+ * Drop down / combo box
+ */
+select {
+
+	.sunken();
+	.glyph-combo-button();
+
+	-webkit-appearance: none;
+	appearance: none;
+	height: 21px * @s;
+	padding: 0 (20px * @s) 0 (4px * @s);
+	border: 0;
+	border-radius: 0;
+	background-color: @color_field;
+	background-position: right (2 * @bw) top (2 * @bw);
+	background-size: (16 * @bw) calc(100% - (4 * @bw));
+	color: @color_text;
+	font: inherit;
+	vertical-align: middle;
+
+	&:focus {
+		outline: none;
+	}
+
+	// the selected text is highlighted while the combo box has focus,
+	// the button image covers its part of the background
+	&:focus-visible {
+		.highlighted();
+	}
+
+	&:active {
+		.glyph-combo-button(@outer-tl: "%23808080", @inner-tl: "%23d4d0c8", @inner-br: "%23d4d0c8", @outer-br: "%23808080");
+	}
+
+	&:disabled {
+		background-color: @color_button_face;
+		color: @color_disabled_text;
+		.glyph-combo-button(@c: "%23808080");
+	}
+
+	option {
+		background-color: @color_field;
+		color: @color_text;
+	}
+
+	// multiple selects render as a list box
+	&[multiple], &[size] {
+		.sunken-border();
+		height: auto;
+		padding: 0;
+		background-image: none;
+		overflow-y: auto;
+
+		option {
+			padding: 0 (2px * @s);
+
+			&:checked {
+				.highlighted();
+				background: @color_highlight linear-gradient(@color_highlight, @color_highlight);
+			}
+		}
+	}
+}
+
+/**
+ * The drop down list
+ *
+ * Browsers supporting customizable selects (appearance: base-select) style
+ * the list with CSS only. Everywhere else classic.js replaces the native
+ * popup with a .select-dropdown list that looks the same.
+ */
+.dropdown-list() {
+	margin: 0;
+	padding: 0;
+	border: solid @bw @color_window_frame;
+	border-radius: 0;
+	background-color: @color_field;
+	box-shadow: none;
+	max-height: 200px * @s;
+	overflow-y: auto;
+}
+
+.dropdown-option() {
+	display: block;
+	min-height: 0;
+	padding: (1px * @s) (2px * @s);
+	border: 0;
+	border-radius: 0;
+	background-color: @color_field;
+	color: @color_text;
+	font-weight: normal;
+	line-height: 1.2;
+	white-space: nowrap;
+	outline: none;
+	cursor: default;
+}
+
+.dropdown-group() {
+	padding: (1px * @s) (2px * @s);
+	font-weight: bold;
+}
+
+@supports (appearance: base-select) {
+	select:not([multiple]):not([size]) {
+		appearance: base-select;
+		display: inline-flex;
+		align-items: center;
+		white-space: nowrap;
+		// clip long text before it runs under the arrow button
+		overflow: clip;
+		overflow-clip-margin: content-box;
+
+		&::picker-icon {
+			display: none;
+		}
+
+		&::picker(select) {
+			appearance: base-select;
+			.dropdown-list();
+		}
+
+		option {
+			.dropdown-option();
+
+			&::checkmark {
+				display: none;
+			}
+
+			// the highlight follows the mouse and keyboard, only one at a time
+			&:hover, &:focus {
+				.highlighted();
+			}
+
+			&:disabled {
+				background-color: @color_field;
+				color: @color_disabled_text;
+			}
+		}
+
+		optgroup {
+			padding: 0;
+			font-weight: bold;
+
+			option {
+				padding-left: 10px * @s;
+			}
+		}
+
+		&:has(option:hover) option:focus:not(:hover) {
+			background-color: @color_field;
+			color: @color_text;
+		}
+	}
+}
+
+// the list classic.js shows in all other browsers
+.select-dropdown {
+	.dropdown-list();
+
+	position: absolute;
+	z-index: 1000;
+	list-style: none;
+	font-family: inherit;
+	user-select: none;
+
+	li {
+		.dropdown-option();
+
+		&.active {
+			.highlighted();
+		}
+
+		&.disabled {
+			color: @color_disabled_text;
+		}
+
+		&.select-dropdown-group {
+			.dropdown-group();
+		}
+
+		&.select-dropdown-indent {
+			padding-left: 10px * @s;
+		}
+	}
+}
+
+/**
+ * List box
+ *
+ *   <ul class="listbox"><li class="active">Item</li></ul>
+ */
+.listbox {
+	.sunken-border();
+
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background-color: @color_field;
+	overflow-y: auto;
+
+	li {
+		padding: 0 (2px * @s);
+		line-height: 1.5;
+		cursor: default;
+		border: dotted @bw transparent;
+
+		&.active, &[aria-selected="true"] {
+			.highlighted();
+		}
+
+		&.focus, &:focus {
+			outline: none;
+			border-color: @color_text;
+		}
+
+		&.active.focus, &.active:focus {
+			border-color: #f5db95;
+		}
+
+		&.disabled {
+			color: @color_disabled_text;
+		}
+	}
+}
+
+/**
+ * Spinner (up down control)
+ *
+ *   <span class="spinner"><input type="number"><span class="spinner-buttons">
+ *     <button class="spinner-up"></button><button class="spinner-down"></button>
+ *   </span></span>
+ */
+.spinner {
+	display: inline-flex;
+	position: relative;
+	vertical-align: middle;
+
+	input {
+		padding-right: 20px * @s;
+		width: 100%;
+	}
+
+	.spinner-buttons {
+		position: absolute;
+		top: 2 * @bw;
+		right: 2 * @bw;
+		bottom: 2 * @bw;
+		width: 16px * @s;
+		display: flex;
+		flex-direction: column;
+	}
+
+	button {
+		flex: 1;
+		min-width: 0;
+		width: 100%;
+		height: auto;
+		padding: 0;
+		background-position: center;
+
+		&:active {
+			padding: 0;
+			background-position: calc(50% + @bw) calc(50% + @bw);
+		}
+	}
+
+	.spinner-up { .glyph-arrow-up-small(); }
+	.spinner-down { .glyph-arrow-down-small(); }
+}
+
+/**
+ * Trackbar (range slider)
+ */
+.range-thumb() {
+	.raised-button();
+	-webkit-appearance: none;
+	appearance: none;
+	width: 11px * @s;
+	height: 21px * @s;
+	border: 0;
+	border-radius: 0;
+	background-color: @color_button_face;
+}
+
+.range-track() {
+	height: 4px * @s;
+	.sunken();
+	background-color: @color_button_face;
+	border: 0;
+}
+
+input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 21px * @s;
+	background: transparent;
+	vertical-align: middle;
+
+	&:focus {
+		.focus-rect(0);
+	}
+	&:focus:not(:focus-visible) {
+		outline: none;
+	}
+
+	&::-webkit-slider-runnable-track { .range-track(); }
+	&::-webkit-slider-thumb {
+		.range-thumb();
+		margin-top: -8.5px * @s;
+	}
+
+	&::-moz-range-track { .range-track(); }
+	&::-moz-range-thumb { .range-thumb(); }
+}
+
+/**
+ * Group box
+ */
+fieldset {
+	.etched-border();
+
+	margin: 0;
+	margin-right: @bw;
+	padding: (8px * @s) (8px * @s) (8px * @s);
+
+	legend {
+		padding: 0 (2px * @s);
+	}
+}

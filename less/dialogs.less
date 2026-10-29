@@ -1,0 +1,105 @@
+/**
+ * Message boxes
+ *
+ *   <div class="window window-dialog">
+ *     <div class="window-header">...</div>
+ *     <div class="window-body">
+ *       <div class="msgbox">
+ *         <span class="msgbox-icon msgbox-icon-warning"></span>
+ *         <p class="msgbox-text">Are you sure?</p>
+ *       </div>
+ *       <div class="button-row"><button class="btn-default">Yes</button><button>No</button></div>
+ *     </div>
+ *   </div>
+ */
+.window-dialog {
+	display: inline-flex;
+	min-width: 250px * @s;
+}
+
+.msgbox {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px * @s;
+	padding: (4px * @s) (4px * @s) 0;
+
+	.msgbox-text {
+		margin: (4px * @s) 0 0;
+		align-self: center;
+	}
+}
+
+.msgbox-icon(@body) {
+	background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'>@{body}</svg>");
+}
+
+.msgbox-icon {
+	flex-shrink: 0;
+	width: 32px * @s;
+	height: 32px * @s;
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+	&.msgbox-icon-error {
+		.msgbox-icon("<circle cx='17' cy='17' r='14' fill='%23000' opacity='.3'/><circle cx='15' cy='15' r='14' fill='%23f00' stroke='%23800000'/><path d='M10 10l10 10M20 10l-10 10' stroke='%23fff' stroke-width='3.5'/>");
+	}
+	&.msgbox-icon-warning {
+		.msgbox-icon("<path d='M17 4l14 26H3z' fill='%23000' opacity='.3'/><path d='M15 2l14 26H1z' fill='%23ff0' stroke='%23000' stroke-linejoin='round'/><path d='M13.5 10h3l-.6 10h-1.8z M13.5 22h3v3h-3z' fill='%23000'/>");
+	}
+	&.msgbox-icon-info {
+		.msgbox-icon("<path d='M17 3c8 0 13 5 13 11s-5 11-13 11l-6 6v-7c-4-2-7-6-7-10 0-6 5-11 13-11z' fill='%23000' opacity='.3'/><path d='M15 1c8 0 13 5 13 11s-5 11-13 11l-6 6v-7c-4-2-7-6-7-10 0-6 5-11 13-11z' fill='%23fff' stroke='%23000'/><path d='M13.5 5h3v3h-3z M12 10h4.5v8h2v2h-7v-2h2v-6h-1.5z' fill='%230000ff'/>");
+	}
+	&.msgbox-icon-question {
+		.msgbox-icon("<path d='M17 3c8 0 13 5 13 11s-5 11-13 11l-6 6v-7c-4-2-7-6-7-10 0-6 5-11 13-11z' fill='%23000' opacity='.3'/><path d='M15 1c8 0 13 5 13 11s-5 11-13 11l-6 6v-7c-4-2-7-6-7-10 0-6 5-11 13-11z' fill='%23fff' stroke='%23000'/><path d='M11 9.5c0-3 2-4.5 4-4.5s4 1.5 4 4c0 3-3 3.5-3 6.5' fill='none' stroke='%230000ff' stroke-width='3'/><path d='M14.5 18h3v3h-3z' fill='%230000ff'/>");
+	}
+}
+
+/**
+ * Button rows at the bottom of dialogs
+ */
+.button-row {
+	display: flex;
+	justify-content: center;
+	gap: 6px * @s;
+	margin-top: 12px * @s;
+
+	&.button-row-right {
+		justify-content: flex-end;
+	}
+}
+
+/**
+ * Tooltips
+ *
+ *   <span class="tooltip">Static tooltip</span>
+ *   <button data-tooltip="Shows on hover">Hover me</button>
+ */
+.tooltip-box() {
+	padding: (1px * @s) (3px * @s);
+	border: solid @bw @color_window_frame;
+	background-color: @color_info_bg;
+	color: @color_text;
+	font-size: 1em;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+.tooltip {
+	display: inline-block;
+	.tooltip-box();
+}
+
+[data-tooltip] {
+	position: relative;
+
+	&:hover:after {
+		content: attr(data-tooltip);
+		position: absolute;
+		z-index: 60;
+		left: 50%;
+		top: calc(100% + (4px * @s));
+		text-align: left;
+		pointer-events: none;
+		.tooltip-box();
+	}
+}

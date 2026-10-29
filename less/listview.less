@@ -1,0 +1,130 @@
+/**
+ * List view, details mode
+ *
+ *   <div class="listview" style="height: 200px">
+ *     <table>
+ *       <thead><tr><th>Name</th><th class="sort-asc">Size</th></tr></thead>
+ *       <tbody><tr class="active"><td>readme.txt</td><td>1 KB</td></tr></tbody>
+ *     </table>
+ *   </div>
+ */
+.listview {
+	.sunken-border();
+
+	position: relative;
+	background-color: @color_field;
+	overflow: auto;
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		user-select: none;
+		cursor: default;
+	}
+
+	// column headers
+	th {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		height: 17px * @s;
+		// the bottom padding moves to the top while pressed, cells can't shrink
+		padding: 0 (6px * @s) @bw;
+		background-color: @color_button_face;
+		// face colored outer line, so the white highlight doesn't touch the
+		// frame and read as a gap
+		.raised();
+		font-weight: normal;
+		text-align: left;
+		white-space: nowrap;
+
+		&:active {
+			box-shadow: inset 0 0 0 @bw @color_shadow_dark;
+			padding: @bw ((6px * @s) - @bw) 0 ((6px * @s) + @bw);
+		}
+
+		&.align-right {
+			text-align: right;
+		}
+
+		&.sort-asc, &.sort-desc {
+			padding-right: 18px * @s;
+			background-position: right (6px * @s) center;
+		}
+		&.sort-asc { .glyph-arrow-up-small("%23808080"); }
+		&.sort-desc { .glyph-arrow-down-small("%23808080"); }
+	}
+
+	td {
+		height: 17px * @s;
+		padding: 0 (6px * @s);
+		white-space: nowrap;
+
+		&.align-right {
+			text-align: right;
+		}
+
+		.icon {
+			margin-right: 3px * @s;
+		}
+	}
+
+	// full row selection
+	tr.active td, tr[aria-selected="true"] td {
+		.highlighted();
+	}
+
+	tr.focus td {
+		box-shadow: inset 0 @bw @color_text, inset 0 (-@bw) @color_text;
+	}
+
+	// grid lines
+	&.listview-grid td {
+		border: solid @bw @color_button_face;
+	}
+}
+
+/**
+ * List view, icon mode
+ *
+ *   <ul class="listview listview-icons">
+ *     <li class="active"><span class="icon icon-32 icon-folder"></span><span>Folder</span></li>
+ *   </ul>
+ */
+.listview-icons {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	gap: 4px * @s;
+	margin: 0;
+	padding: 6px * @s;
+	list-style: none;
+
+	li {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 75px * @s;
+		padding: 2px * @s;
+		text-align: center;
+		cursor: default;
+		user-select: none;
+
+		> span:last-child {
+			margin-top: 3px * @s;
+			padding: 0 (2px * @s);
+			border: dotted @bw transparent;
+			word-break: break-word;
+		}
+
+		&.active {
+			.icon {
+				filter: brightness(0.6) sepia(1) hue-rotate(190deg) saturate(5);
+			}
+			> span:last-child {
+				.highlighted();
+				border-color: #f5db95;
+			}
+		}
+	}
+}

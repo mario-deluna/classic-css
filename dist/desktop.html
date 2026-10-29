@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title-->
+    <title>Desktop – Classic CSS</title>
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="classic.css?1793276114251" type="text/css">
+    <link rel="stylesheet" href="demo.css?1793276114251" type="text/css">
+    <!-- Demo font picker, applied before the page renders-->
+    <script>
+      try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+      
+    </script>
+    <!-- Optional behaviour-->
+    <script src="classic.js?1793276114251" defer></script>
+  </head>
+  <body>
+    <div class="desktop">
+      <div class="desktop-icons"><a class="desktop-icon" href="#" tabindex="0"><span class="icon icon-32 icon-computer"></span><span>My Computer</span></a><a class="desktop-icon" href="#" tabindex="0"><span class="icon icon-32 icon-folder"></span><span>My Documents</span></a><a class="desktop-icon" href="#" tabindex="0"><span class="icon icon-32 icon-globe"></span><span>My Network Places</span></a><a class="desktop-icon" href="#" tabindex="0"><span class="icon icon-32 icon-recycle-bin"></span><span>Recycle Bin</span></a><a class="desktop-icon active" href="index.html"><span class="icon icon-32 icon-document"></span><span>Classic CSS explorer</span></a></div>
+      <div class="window" style="position: absolute; left: 260px; top: 60px; width: 420px" data-window="" data-draggable="">
+        <div class="window-header"><span class="window-header-icon icon icon-document"></span><span class="window-header-title">Untitled - Notepad</span><span class="window-header-controls">
+            <button class="window-minimize" aria-label="Minimize"></button>
+            <button class="window-maximize" aria-label="Maximize"></button>
+            <button class="window-close" aria-label="Close"></button></span>
+        </div>
+        <ul class="menubar" data-menubar>
+          <li class="menubar-item" tabindex="0"><u>F</u>ile
+            <ul class="menu">
+              <li><u>N</u>ew <span class="menu-shortcut">Ctrl+N</span></li>
+              <li><u>O</u>pen… <span class="menu-shortcut">Ctrl+O</span></li>
+              <li class="menu-separator"></li>
+              <li>E<u>x</u>it</li>
+            </ul>
+          </li>
+          <li class="menubar-item" tabindex="0"><u>E</u>dit
+            <ul class="menu">
+              <li><u>C</u>opy <span class="menu-shortcut">Ctrl+C</span></li>
+              <li><u>P</u>aste <span class="menu-shortcut">Ctrl+V</span></li>
+            </ul>
+          </li>
+          <li class="menubar-item" tabindex="0"><u>H</u>elp
+            <ul class="menu">
+              <li><u>A</u>bout Notepad</li>
+            </ul>
+          </li>
+        </ul>
+        <textarea style="width: 100%; height: 200px">Hello from Windows 2000! Drag me by the title bar.</textarea>
+      </div>
+      <div class="window window-dialog window-inactive" style="position: absolute; left: 520px; top: 330px" data-window="" data-draggable="">
+        <div class="window-header"><span class="window-header-title">Confirm</span><span class="window-header-controls">
+            <button class="window-close" aria-label="Close"></button></span>
+        </div>
+        <div class="window-body">
+          <div class="msgbox"><span class="msgbox-icon msgbox-icon-question"></span>
+            <p class="msgbox-text">Click a window to activate it.</p>
+          </div>
+          <div class="button-row">
+            <button class="btn-default">OK</button>
+          </div>
+        </div>
+      </div>
+      <div class="start-menu" id="start-menu">
+        <div class="start-menu-banner"><b>Windows</b>2000 Professional</div>
+        <ul class="menu">
+          <li class="menu-submenu"><span class="icon icon-folder"></span><u>P</u>rograms
+            <ul class="menu">
+              <li>Accessories</li>
+              <li>Internet Explorer</li>
+              <li>Outlook Express</li>
+            </ul>
+          </li>
+          <li class="menu-submenu"><span class="icon icon-document"></span><u>D</u>ocuments</li>
+          <li class="menu-submenu"><span class="icon icon-computer"></span><u>S</u>ettings</li>
+          <li><span class="icon icon-globe"></span>Sear<u>c</u>h</li>
+          <li><span class="icon icon-document"></span><u>H</u>elp</li>
+          <li><span class="icon icon-computer"></span><u>R</u>un…</li>
+          <li class="menu-separator"></li>
+          <li><span class="icon icon-computer"></span>Sh<u>u</u>t Down…</li>
+        </ul>
+      </div>
+      <div class="taskbar">
+        <button class="start-button active" data-start-button="#start-menu"><span class="icon icon-windows"></span>Start</button><span class="toolbar-separator"></span>
+        <div class="taskbar-buttons">
+          <button class="taskbar-button active"><span class="icon icon-document"></span>Untitled - Notepad</button>
+          <button class="taskbar-button"><span class="icon icon-folder-open"></span>My Documents</button>
+        </div>
+        <div class="taskbar-tray"><span class="icon icon-globe"></span><span data-clock>12:00 PM</span></div>
+      </div>
+    </div>
+  </body>
+</html>

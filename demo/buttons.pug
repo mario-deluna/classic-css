@@ -5,5 +5,28 @@ block params
   - var title='Buttons'
 
 block content
-  .pdn 
-    a.btn(href='#') Button
+  .window-content.pdn
+    .demo-heading Push buttons
+    .demo-row
+      button Button
+      button.btn-default OK
+      button(disabled) Disabled
+      a.btn(href='#') Link button
+      input(type='submit', value='Submit')
+
+    .demo-heading Toggle buttons
+    .demo-row
+      button.btn-toggle.active Pressed
+      button.btn-toggle Released
+
+    .demo-heading Flat (toolbar) buttons
+    .demo-row
+      button.btn-flat Back
+      button.btn-flat.active Active
+      button.btn-flat(disabled) Disabled
+
+    .demo-heading Icon buttons
+    .demo-row
+      button.btn-icon(aria-label='Bold') <b>B</b>
+      button.btn-icon(aria-label='Italic') <i>I</i>
+      button.btn-icon.btn-toggle.active(aria-label='Underline') <u>U</u>

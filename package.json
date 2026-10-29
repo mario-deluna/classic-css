@@ -1,0 +1,19 @@
+{
+  "name": "classic-css",
+  "version": "1.0.0",
+  "description": "Make your website look like a classic window application. Windows 95, 2000",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:css && npm run build:js && npm run build:html",
+    "build:css": "lessc less/bootstrap.less dist/classic.css && lessc less/demo.less dist/demo.css",
+    "build:js": "cp js/classic.js dist/classic.js",
+    "build:html": "pug demo --out dist --pretty",
+    "watch": "chokidar \"less/**/*.less\" \"demo/**/*.pug\" \"js/**/*.js\" -c \"npm run build\" --initial"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "less": "^4.2.0",
+    "pug-cli": "^1.0.0-alpha6"
+  }
+}

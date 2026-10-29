@@ -1,0 +1,93 @@
+extends layout.pug
+
+block params
+  - var active='forms.html'
+  - var title='Form controls'
+
+block content
+  .pdn
+    .grid.grid-space
+      .col
+        fieldset
+          legend Text fields
+          .field-row
+            label(for='f-name') Name:
+            input#f-name(type='text', value='Bill')
+          .field-row
+            label(for='f-pass') Password:
+            input#f-pass(type='password', value='secret')
+          .field-row
+            label(for='f-ro') Read only:
+            input#f-ro(type='text', value='Read only', readonly)
+          .field-row
+            label(for='f-dis') Disabled:
+            input#f-dis(type='text', value='Disabled', disabled)
+          .field-row-stacked
+            label(for='f-notes') Notes:
+            textarea#f-notes(rows='4') Multiline text…
+
+        fieldset
+          legend Checkboxes
+          .field-row
+            input#c1(type='checkbox', checked)
+            label(for='c1') Checked
+          .field-row
+            input#c2(type='checkbox')
+            label(for='c2') Unchecked
+          .field-row
+            input#c3(type='checkbox', checked, disabled)
+            label(for='c3') Disabled
+
+      .col
+        fieldset
+          legend Radio buttons
+          .field-row
+            input#r1(type='radio', name='r', checked)
+            label(for='r1') Large icons
+          .field-row
+            input#r2(type='radio', name='r')
+            label(for='r2') Small icons
+          .field-row
+            input#r3(type='radio', name='r', disabled)
+            label(for='r3') Disabled
+
+        fieldset
+          legend Combo box & spinner
+          .field-row
+            label(for='s1') Display:
+            select#s1
+              option Windows Standard
+              option Brick
+              option Desert
+            select(disabled)
+              option Disabled
+          .field-row
+            label(for='n1') Copies:
+            span.spinner
+              input#n1(type='number', value='1', min='0', max='99', style='width: 60px')
+              span.spinner-buttons
+                button.spinner-up(type='button', aria-label='Increase')
+                button.spinner-down(type='button', aria-label='Decrease')
+
+        fieldset
+          legend Trackbar
+          .field-row
+            label Slow
+            input(type='range', min='0', max='10', value='4')
+            label Fast
+
+        fieldset
+          legend List boxes
+          .grid.grid-space
+            .col
+              ul.listbox(data-listview, style='height: 90px')
+                li Arial
+                li.active.focus Courier New
+                li Tahoma
+                li Times New Roman
+                li.disabled Wingdings
+            .col
+              select(multiple, style='width: 100%; height: 90px')
+                option Arial
+                option(selected) Tahoma
+                option Verdana

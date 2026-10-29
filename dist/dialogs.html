@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- parameters-->
+  <!-- Header-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title-->
+    <title>Dialogs &amp; tooltips – Classic CSS</title>
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="classic.css?1793276114275" type="text/css">
+    <link rel="stylesheet" href="demo.css?1793276114275" type="text/css">
+    <!-- Demo font picker, applied before the page renders-->
+    <script>
+      try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+      
+    </script>
+    <!-- Optional behaviour-->
+    <script src="classic.js?1793276114275" defer></script>
+  </head>
+  <!-- Body Base layout-->
+  <body>
+    <div id="demo-window-container">
+      <div class="window">
+        <div class="window-header"><span class="window-header-title">Classic CSS explorer – Dialogs &amp; tooltips</span><span class="window-header-controls">
+            <button class="window-minimize" aria-label="Minimize"></button>
+            <button class="window-maximize" aria-label="Maximize"></button>
+            <button class="window-close" aria-label="Close"></button></span></div>
+        <div class="toolbar toolbar-plain">
+          <label for="demo-font">Font:</label>
+          <select id="demo-font">
+            <option value="tahoma">Tahoma (Windows 2000)</option>
+            <option value="pixel">Pixel (px-sans-nouveaux)</option>
+          </select>
+          <script>
+            (function () {
+              var select = document.getElementById('demo-font');
+              var html = document.documentElement;
+              select.value = html.classList.contains('font-pixel') ? 'pixel' : 'tahoma';
+              select.addEventListener('change', function () {
+                html.classList.remove('font-tahoma', 'font-pixel');
+                html.classList.add('font-' + select.value);
+                try { localStorage.setItem('classic-font', select.value); } catch (e) {}
+              });
+            })();
+            
+          </script>
+        </div>
+        <div class="grid grid-space">
+          <div class="col3">
+            <div class="window-content" style="height: 100%; overflow: auto">
+              <ul class="tree-view">
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Getting started</summary>
+                    <ul>
+                      <li><a href="index.html"><span class="icon icon-document"></span>Welcome</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Controls</summary>
+                    <ul>
+                      <li><a href="buttons.html"><span class="icon icon-document"></span>Buttons</a></li>
+                      <li><a href="forms.html"><span class="icon icon-document"></span>Form controls</a></li>
+                      <li><a href="progress.html"><span class="icon icon-document"></span>Progress bars</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Windows</summary>
+                    <ul>
+                      <li><a href="window.html"><span class="icon icon-document"></span>Windows</a></li>
+                      <li><a href="menus.html"><span class="icon icon-document"></span>Menus</a></li>
+                      <li><a href="toolbar.html"><span class="icon icon-document"></span>Toolbars &amp; status bar</a></li>
+                      <li><a href="tabs.html"><span class="icon icon-document"></span>Tabs</a></li>
+                      <li class="active"><a href="dialogs.html"><span class="icon icon-document"></span>Dialogs &amp; tooltips</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Data views</summary>
+                    <ul>
+                      <li><a href="tree.html"><span class="icon icon-document"></span>Tree view</a></li>
+                      <li><a href="listview.html"><span class="icon icon-document"></span>List views</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Shell</summary>
+                    <ul>
+                      <li><a href="desktop.html"><span class="icon icon-document"></span>Desktop</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="pdn">
+              <div class="demo-row" style="align-items: flex-start">
+                <div class="window window-dialog">
+                  <div class="window-header"><span class="window-header-title">Error</span><span class="window-header-controls">
+                      <button class="window-close" aria-label="Close"></button></span>
+                  </div>
+                  <div class="window-body">
+                    <div class="msgbox"><span class="msgbox-icon msgbox-icon-error"></span>
+                      <p class="msgbox-text">A:\ is not accessible. The device is not ready.</p>
+                    </div>
+                    <div class="button-row">
+                      <button class="btn-default">Retry</button>
+                      <button>Cancel</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="window window-dialog">
+                  <div class="window-header"><span class="window-header-title">Confirm File Delete</span><span class="window-header-controls">
+                      <button class="window-close" aria-label="Close"></button></span>
+                  </div>
+                  <div class="window-body">
+                    <div class="msgbox"><span class="msgbox-icon msgbox-icon-warning"></span>
+                      <p class="msgbox-text">Are you sure you want to delete 'readme.txt'?</p>
+                    </div>
+                    <div class="button-row">
+                      <button class="btn-default">Yes</button>
+                      <button>No</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="window window-dialog">
+                  <div class="window-header"><span class="window-header-title">Information</span><span class="window-header-controls">
+                      <button class="window-close" aria-label="Close"></button></span>
+                  </div>
+                  <div class="window-body">
+                    <div class="msgbox"><span class="msgbox-icon msgbox-icon-info"></span>
+                      <p class="msgbox-text">The file has been saved.</p>
+                    </div>
+                    <div class="button-row">
+                      <button class="btn-default">OK</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="window window-dialog">
+                  <div class="window-header"><span class="window-header-title">Notepad</span><span class="window-header-controls">
+                      <button class="window-close" aria-label="Close"></button></span>
+                  </div>
+                  <div class="window-body">
+                    <div class="msgbox"><span class="msgbox-icon msgbox-icon-question"></span>
+                      <p class="msgbox-text">Do you want to save the changes?</p>
+                    </div>
+                    <div class="button-row">
+                      <button class="btn-default">Yes</button>
+                      <button>No</button>
+                      <button>Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-heading">Copying…</div>
+              <div class="window window-dialog" style="width: 360px">
+                <div class="window-header"><span class="window-header-title">Copying...</span><span class="window-header-controls">
+                    <button class="window-close" aria-label="Close"></button></span>
+                </div>
+                <div class="window-body demo-stack">
+                  <div>readme.txt</div>
+                  <div>From 'WINNT' to 'Backup'</div>
+                  <div class="progress progress-smooth">
+                    <div class="progress-bar" style="width: 60%"></div>
+                  </div>
+                  <div>12 Seconds Remaining</div>
+                  <div class="button-row button-row-right">
+                    <button>Cancel</button>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-heading">Tooltips</div>
+              <div class="demo-row"><span class="tooltip">Static tooltip</span>
+                <button data-tooltip="Shows on hover">Hover me</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

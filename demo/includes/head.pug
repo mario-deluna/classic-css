@@ -1,8 +1,17 @@
 head
   meta(charset='utf-8')
-    
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+
   // Title
   title #{title} – Classic CSS
-  
+
   // Stylesheets
   link(rel='stylesheet', href='classic.css?' + Date.now(), type='text/css')
+  link(rel='stylesheet', href='demo.css?' + Date.now(), type='text/css')
+
+  // Demo font picker, applied before the page renders
+  script.
+    try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+
+  // Optional behaviour
+  script(src='classic.js?' + Date.now(), defer)

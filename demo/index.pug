@@ -1,12 +1,20 @@
 extends layout.pug
+include mixins/window.pug
 
 block params
   - var active='index.html'
   - var title='Welcome'
 
 block content
-  .window-content
+  .window-content(style='height: 100%')
     .pdn
       h1 Welcome to Classic CSS
-      p The stylesheet that lets you create websites that look like an old windows application.
-      p Note: This does not work properly in IE...
+      p The stylesheet that lets you create websites that look like an old Windows 2000 application.
+      p
+        | Include <code>classic.css</code> and use plain HTML: buttons, inputs, selects, checkboxes, fieldsets and
+        | progress bars are styled out of the box. Windows, menus, toolbars, tabs, tree views, list views and even
+        | a desktop with taskbar are a few classes away.
+      p
+        | <code>classic.js</code> is optional. It adds proper menu handling, tab switching, list selection and
+        | draggable windows to elements marked with <code>data-*</code> attributes.
+      p Pick a component from the tree on the left.

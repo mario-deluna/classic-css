@@ -1,0 +1,227 @@
+/**
+ * Desktop, taskbar & start menu
+ *
+ *   <div class="desktop">
+ *     <div class="desktop-icons">
+ *       <a class="desktop-icon"><span class="icon icon-32 icon-computer"></span><span>My Computer</span></a>
+ *     </div>
+ *     <div class="start-menu" hidden>...</div>
+ *     <div class="taskbar">
+ *       <button class="start-button"><span class="icon icon-windows"></span>Start</button>
+ *       <div class="taskbar-buttons"><button class="taskbar-button active">Notepad</button></div>
+ *       <div class="taskbar-tray">12:00 PM</div>
+ *     </div>
+ *   </div>
+ */
+@taskbar_height: 28px * @s;
+
+.desktop {
+	position: relative;
+	min-height: 100vh;
+	padding-bottom: @taskbar_height;
+	background-color: @color_background;
+	overflow: hidden;
+}
+
+/**
+ * Desktop icons, arranged top to bottom
+ */
+.desktop-icons {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	gap: 8px * @s;
+	height: calc(100vh - @taskbar_height);
+	padding: 4px * @s;
+}
+
+.desktop-icon {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 75px * @s;
+	padding: 2px * @s;
+	color: @color_highlight_text;
+	text-align: center;
+	text-decoration: none;
+	cursor: default;
+	user-select: none;
+	outline: none;
+
+	> span:last-child {
+		margin-top: 3px * @s;
+		padding: 0 (2px * @s);
+		border: dotted @bw transparent;
+		word-break: break-word;
+	}
+
+	&.active, &:focus {
+		.icon {
+			filter: brightness(0.6) sepia(1) hue-rotate(190deg) saturate(5);
+		}
+		> span:last-child {
+			.highlighted();
+			border-color: #f5db95;
+		}
+	}
+}
+
+/**
+ * Taskbar
+ */
+.taskbar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 90;
+	display: flex;
+	align-items: center;
+	gap: 3px * @s;
+	height: @taskbar_height;
+	padding: (3px * @s) (2px * @s) (2px * @s);
+	background-color: @color_button_face;
+	box-shadow: inset 0 @bw @color_button_face, inset 0 (2 * @bw) @color_shadow_light;
+
+	// inside a .desktop the taskbar sticks to it instead of the viewport
+	.desktop & {
+		position: absolute;
+	}
+
+	.toolbar-separator {
+		height: 20px * @s;
+		margin: 0 (1px * @s);
+	}
+}
+
+.start-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px * @s;
+	min-width: 0;
+	height: 22px * @s;
+	padding: 0 (4px * @s) 0 (3px * @s);
+	font-weight: bold;
+
+	&.active, &:active {
+		padding: @bw ((4px * @s) - @bw) 0 ((3px * @s) + @bw);
+	}
+
+	&:focus-visible {
+		.focus-rect(-3px);
+	}
+}
+
+.taskbar-buttons {
+	display: flex;
+	flex: 1;
+	gap: 3px * @s;
+	min-width: 0;
+}
+
+.taskbar-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px * @s;
+	flex: 0 1 160px * @s;
+	min-width: 0;
+	height: 22px * @s;
+	padding: 0 (4px * @s);
+	text-align: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	&.active {
+		.pressed();
+		.dither();
+		font-weight: bold;
+		padding: @bw ((4px * @s) - @bw) 0 ((4px * @s) + @bw);
+	}
+}
+
+.taskbar-tray {
+	.sunken-thin();
+
+	display: flex;
+	align-items: center;
+	gap: 4px * @s;
+	height: 22px * @s;
+	padding: 0 (8px * @s) 0 (6px * @s);
+	white-space: nowrap;
+	cursor: default;
+}
+
+/**
+ * Start menu
+ *
+ *   <div class="start-menu">
+ *     <div class="start-menu-banner"><b>Windows</b>2000 Professional</div>
+ *     <ul class="menu">
+ *       <li><span class="icon icon-32 icon-folder"></span> Programs</li>
+ *     </ul>
+ *   </div>
+ */
+.start-menu {
+	.raised();
+
+	position: absolute;
+	left: 2px * @s;
+	bottom: @taskbar_height - (2px * @s);
+	z-index: 95;
+	display: flex;
+	padding: 3px * @s;
+	background-color: @color_button_face;
+
+	&[hidden] {
+		display: none;
+	}
+
+	> .menu {
+		box-shadow: none;
+		padding: 0;
+		min-width: 170px * @s;
+
+		> li {
+			height: 32px * @s;
+			line-height: 32px * @s;
+			padding: 0 (24px * @s) 0 (4px * @s);
+
+			> .icon {
+				width: 24px * @s;
+				height: 24px * @s;
+				margin-right: 8px * @s;
+			}
+		}
+
+		> li.menu-separator {
+			height: 2 * @bw;
+			padding: 0;
+		}
+
+		> li.menu-submenu > .menu {
+			top: 0;
+		}
+	}
+}
+
+.start-menu-banner {
+	display: flex;
+	align-items: center;
+	width: 21px * @s;
+	margin-right: 1px * @s;
+	padding: (4px * @s) 0;
+	background-image: linear-gradient(to top, #000080, #1084d0);
+	color: @color_button_face;
+	font-size: 1.6em;
+	line-height: 1;
+	white-space: nowrap;
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+
+	b {
+		color: @color_highlight_text;
+		margin-left: 0;
+		margin-bottom: 3px * @s;
+	}
+}

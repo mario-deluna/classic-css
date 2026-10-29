@@ -4,33 +4,117 @@
   <!-- Header-->
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Title-->
     <title>Welcome – Classic CSS</title>
     <!-- Stylesheets-->
-    <link rel="stylesheet" href="classic.css?1521589998198" type="text/css">
+    <link rel="stylesheet" href="classic.css?1793276114307" type="text/css">
+    <link rel="stylesheet" href="demo.css?1793276114307" type="text/css">
+    <!-- Demo font picker, applied before the page renders-->
+    <script>
+      try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+      
+    </script>
+    <!-- Optional behaviour-->
+    <script src="classic.js?1793276114307" defer></script>
   </head>
   <!-- Body Base layout-->
   <body>
     <div id="demo-window-container">
-      <div class="window window-active">
-        <div class="window-header"> <span class="window-header-title">Classic CSS explorer – Welcome</span></div>
+      <div class="window">
+        <div class="window-header"><span class="window-header-title">Classic CSS explorer – Welcome</span><span class="window-header-controls">
+            <button class="window-minimize" aria-label="Minimize"></button>
+            <button class="window-maximize" aria-label="Maximize"></button>
+            <button class="window-close" aria-label="Close"></button></span></div>
+        <div class="toolbar toolbar-plain">
+          <label for="demo-font">Font:</label>
+          <select id="demo-font">
+            <option value="tahoma">Tahoma (Windows 2000)</option>
+            <option value="pixel">Pixel (px-sans-nouveaux)</option>
+          </select>
+          <script>
+            (function () {
+              var select = document.getElementById('demo-font');
+              var html = document.documentElement;
+              select.value = html.classList.contains('font-pixel') ? 'pixel' : 'tahoma';
+              select.addEventListener('change', function () {
+                html.classList.remove('font-tahoma', 'font-pixel');
+                html.classList.add('font-' + select.value);
+                try { localStorage.setItem('classic-font', select.value); } catch (e) {}
+              });
+            })();
+            
+          </script>
+        </div>
         <div class="grid grid-space">
           <div class="col3">
-            <div class="window-content">
-              <div class="tree-nav">
-                <ul>
-                  <li class="active"><a href="index.html">Welcome</a></li>
-                  <li><a href="buttons.html">Buttons</a></li>
-                </ul>
-              </div>
+            <div class="window-content" style="height: 100%; overflow: auto">
+              <ul class="tree-view">
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Getting started</summary>
+                    <ul>
+                      <li class="active"><a href="index.html"><span class="icon icon-document"></span>Welcome</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Controls</summary>
+                    <ul>
+                      <li><a href="buttons.html"><span class="icon icon-document"></span>Buttons</a></li>
+                      <li><a href="forms.html"><span class="icon icon-document"></span>Form controls</a></li>
+                      <li><a href="progress.html"><span class="icon icon-document"></span>Progress bars</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Windows</summary>
+                    <ul>
+                      <li><a href="window.html"><span class="icon icon-document"></span>Windows</a></li>
+                      <li><a href="menus.html"><span class="icon icon-document"></span>Menus</a></li>
+                      <li><a href="toolbar.html"><span class="icon icon-document"></span>Toolbars &amp; status bar</a></li>
+                      <li><a href="tabs.html"><span class="icon icon-document"></span>Tabs</a></li>
+                      <li><a href="dialogs.html"><span class="icon icon-document"></span>Dialogs &amp; tooltips</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Data views</summary>
+                    <ul>
+                      <li><a href="tree.html"><span class="icon icon-document"></span>Tree view</a></li>
+                      <li><a href="listview.html"><span class="icon icon-document"></span>List views</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Shell</summary>
+                    <ul>
+                      <li><a href="desktop.html"><span class="icon icon-document"></span>Desktop</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="col">
-            <div class="window-content">
+            <div class="window-content" style="height: 100%">
               <div class="pdn">
                 <h1>Welcome to Classic CSS</h1>
-                <p>The stylesheet that lets you create websites that look like an old windows application.</p>
-                <p>Note: This does not work properly in IE...</p>
+                <p>The stylesheet that lets you create websites that look like an old Windows 2000 application.</p>
+                <p>
+                  Include <code>classic.css</code> and use plain HTML: buttons, inputs, selects, checkboxes, fieldsets and
+                  progress bars are styled out of the box. Windows, menus, toolbars, tabs, tree views, list views and even
+                  a desktop with taskbar are a few classes away.
+                </p>
+                <p>
+                  <code>classic.js</code> is optional. It adds proper menu handling, tab switching, list selection and
+                  draggable windows to elements marked with <code>data-*</code> attributes.
+                </p>
+                <p>Pick a component from the tree on the left.</p>
               </div>
             </div>
           </div>

@@ -1,0 +1,61 @@
+extends layout.pug
+include mixins/window.pug
+
+block params
+  - var active='dialogs.html'
+  - var title='Dialogs & tooltips'
+
+block content
+  .pdn
+    .demo-row(style='align-items: flex-start')
+      +window('Error', {dialog: true, class: 'window-dialog'})
+        .window-body
+          .msgbox
+            span.msgbox-icon.msgbox-icon-error
+            p.msgbox-text A:\ is not accessible. The device is not ready.
+          .button-row
+            button.btn-default Retry
+            button Cancel
+
+      +window('Confirm File Delete', {dialog: true, class: 'window-dialog'})
+        .window-body
+          .msgbox
+            span.msgbox-icon.msgbox-icon-warning
+            p.msgbox-text Are you sure you want to delete 'readme.txt'?
+          .button-row
+            button.btn-default Yes
+            button No
+
+      +window('Information', {dialog: true, class: 'window-dialog'})
+        .window-body
+          .msgbox
+            span.msgbox-icon.msgbox-icon-info
+            p.msgbox-text The file has been saved.
+          .button-row
+            button.btn-default OK
+
+      +window('Notepad', {dialog: true, class: 'window-dialog'})
+        .window-body
+          .msgbox
+            span.msgbox-icon.msgbox-icon-question
+            p.msgbox-text Do you want to save the changes?
+          .button-row
+            button.btn-default Yes
+            button No
+            button Cancel
+
+    .demo-heading Copying…
+    +window('Copying...', {dialog: true, class: 'window-dialog', style: 'width: 360px'})
+      .window-body.demo-stack
+        div readme.txt
+        div From 'WINNT' to 'Backup'
+        .progress.progress-smooth
+          .progress-bar(style='width: 60%')
+        div 12 Seconds Remaining
+        .button-row.button-row-right
+          button Cancel
+
+    .demo-heading Tooltips
+    .demo-row
+      span.tooltip Static tooltip
+      button(data-tooltip='Shows on hover') Hover me

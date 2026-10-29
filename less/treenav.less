@@ -1,41 +1,128 @@
-.tree-nav {
-	ul {
-		padding: 0;
+/**
+ * Tree view
+ *
+ *   <ul class="tree-view">
+ *     <li class="active"><a href="#">Leaf</a></li>
+ *     <li>
+ *       <details open>
+ *         <summary><span class="icon icon-folder"></span> Folder</summary>
+ *         <ul><li><a href="#">Child</a></li></ul>
+ *       </details>
+ *     </li>
+ *   </ul>
+ *
+ * Folders use <details> so they expand without JavaScript. `.tree-nav`
+ * is kept as an alias for older markup.
+ */
+@tree_row: 18px * @s;
+@tree_indent: 19px * @s;
+@tree_line: dotted @bw @color_shadow_dark;
+
+.tree-view, .tree-nav {
+
+	&, ul {
 		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		position: relative;
+		padding-left: @tree_indent;
+		white-space: nowrap;
+
+		// horizontal connector
+		&:before {
+			content: "";
+			position: absolute;
+			left: 8px * @s;
+			top: (@tree_row / 2);
+			width: 9px * @s;
+			border-top: @tree_line;
+		}
+
+		// vertical line down to the next sibling
+		&:after {
+			content: "";
+			position: absolute;
+			left: 8px * @s;
+			top: 0;
+			bottom: 0;
+			border-left: @tree_line;
+		}
+
+		&:first-child:after {
+			top: (@tree_row / 2);
+		}
+
+		&:last-child:after {
+			bottom: auto;
+			height: (@tree_row / 2);
+		}
+
+		&:first-child:last-child:after {
+			display: none;
+		}
+	}
+
+	// child lists are indented by their parents li
+	ul {
+		margin-left: 0;
+	}
+
+	// labels
+	a, summary, .tree-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 3px * @s;
+		height: @tree_row - (2px * @s);
+		margin: (1px * @s) 0;
+		padding: 0 (2px * @s);
+		border: @bw dotted transparent;
+		color: @color_text;
+		text-decoration: none;
+		cursor: default;
+		outline: none;
+		user-select: none;
+
+		&:focus-visible {
+			border-color: @color_text;
+		}
+	}
+
+	li.active > a,
+	li.active > .tree-item,
+	li.active > details > summary {
+		.highlighted();
+		border-color: #f5db95;
+	}
+
+	summary {
 		list-style: none;
 
-		font-size: @font_size * @s * 0.8;
-
-		margin-left: 5px * @s;
-		padding-left: 5px * @s;
-		border-left: (1px * @s) dotted #808080;
-
-		li {
-
-			margin-left: 5px * @s;
-
-			&:before {
-				content: " ";
-				position: absolute;
-				border-top: (1px * @s) dotted #808080;
-				width: 7px * @s;
-				margin-left: (10px * @s * -1) + (1 * @s);
-				margin-top: 14px;
-			}
-
-			&.active a {
-				background-color: @color_highlight;
-				color: #fff;
-				border: (1px * @s) dotted #f5db95;
-			}
-
-			a {
-				display: inline-block;
-				padding: 1px * @s;
-				color: #000;
-				text-decoration: none;
-				border: (1px * @s) solid transparent;
-			}
+		&::-webkit-details-marker {
+			display: none;
 		}
+
+		// the [+] / [-] box
+		&:before {
+			content: "";
+			position: absolute;
+			z-index: 1;
+			left: 4px * @s;
+			top: ((@tree_row - (9px * @s)) / 2);
+			width: 9px * @s;
+			height: 9px * @s;
+			.glyph-tree-plus();
+		}
+	}
+
+	details[open] > summary:before {
+		.glyph-tree-minus();
+	}
+
+	// folder icons open with their details
+	details[open] > summary .icon-folder {
+		.icon-folder-open();
 	}
 }

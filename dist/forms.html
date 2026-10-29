@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- parameters-->
+  <!-- Header-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title-->
+    <title>Form controls – Classic CSS</title>
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="classic.css?1793276114293" type="text/css">
+    <link rel="stylesheet" href="demo.css?1793276114293" type="text/css">
+    <!-- Demo font picker, applied before the page renders-->
+    <script>
+      try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+      
+    </script>
+    <!-- Optional behaviour-->
+    <script src="classic.js?1793276114293" defer></script>
+  </head>
+  <!-- Body Base layout-->
+  <body>
+    <div id="demo-window-container">
+      <div class="window">
+        <div class="window-header"><span class="window-header-title">Classic CSS explorer – Form controls</span><span class="window-header-controls">
+            <button class="window-minimize" aria-label="Minimize"></button>
+            <button class="window-maximize" aria-label="Maximize"></button>
+            <button class="window-close" aria-label="Close"></button></span></div>
+        <div class="toolbar toolbar-plain">
+          <label for="demo-font">Font:</label>
+          <select id="demo-font">
+            <option value="tahoma">Tahoma (Windows 2000)</option>
+            <option value="pixel">Pixel (px-sans-nouveaux)</option>
+          </select>
+          <script>
+            (function () {
+              var select = document.getElementById('demo-font');
+              var html = document.documentElement;
+              select.value = html.classList.contains('font-pixel') ? 'pixel' : 'tahoma';
+              select.addEventListener('change', function () {
+                html.classList.remove('font-tahoma', 'font-pixel');
+                html.classList.add('font-' + select.value);
+                try { localStorage.setItem('classic-font', select.value); } catch (e) {}
+              });
+            })();
+            
+          </script>
+        </div>
+        <div class="grid grid-space">
+          <div class="col3">
+            <div class="window-content" style="height: 100%; overflow: auto">
+              <ul class="tree-view">
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Getting started</summary>
+                    <ul>
+                      <li><a href="index.html"><span class="icon icon-document"></span>Welcome</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Controls</summary>
+                    <ul>
+                      <li><a href="buttons.html"><span class="icon icon-document"></span>Buttons</a></li>
+                      <li class="active"><a href="forms.html"><span class="icon icon-document"></span>Form controls</a></li>
+                      <li><a href="progress.html"><span class="icon icon-document"></span>Progress bars</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Windows</summary>
+                    <ul>
+                      <li><a href="window.html"><span class="icon icon-document"></span>Windows</a></li>
+                      <li><a href="menus.html"><span class="icon icon-document"></span>Menus</a></li>
+                      <li><a href="toolbar.html"><span class="icon icon-document"></span>Toolbars &amp; status bar</a></li>
+                      <li><a href="tabs.html"><span class="icon icon-document"></span>Tabs</a></li>
+                      <li><a href="dialogs.html"><span class="icon icon-document"></span>Dialogs &amp; tooltips</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Data views</summary>
+                    <ul>
+                      <li><a href="tree.html"><span class="icon icon-document"></span>Tree view</a></li>
+                      <li><a href="listview.html"><span class="icon icon-document"></span>List views</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Shell</summary>
+                    <ul>
+                      <li><a href="desktop.html"><span class="icon icon-document"></span>Desktop</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="pdn">
+              <div class="grid grid-space">
+                <div class="col">
+                  <fieldset>
+                    <legend>Text fields</legend>
+                    <div class="field-row">
+                      <label for="f-name">Name:</label>
+                      <input id="f-name" type="text" value="Bill">
+                    </div>
+                    <div class="field-row">
+                      <label for="f-pass">Password:</label>
+                      <input id="f-pass" type="password" value="secret">
+                    </div>
+                    <div class="field-row">
+                      <label for="f-ro">Read only:</label>
+                      <input id="f-ro" type="text" value="Read only" readonly>
+                    </div>
+                    <div class="field-row">
+                      <label for="f-dis">Disabled:</label>
+                      <input id="f-dis" type="text" value="Disabled" disabled>
+                    </div>
+                    <div class="field-row-stacked">
+                      <label for="f-notes">Notes:</label>
+                      <textarea id="f-notes" rows="4">Multiline text…</textarea>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Checkboxes</legend>
+                    <div class="field-row">
+                      <input id="c1" type="checkbox" checked>
+                      <label for="c1">Checked</label>
+                    </div>
+                    <div class="field-row">
+                      <input id="c2" type="checkbox">
+                      <label for="c2">Unchecked</label>
+                    </div>
+                    <div class="field-row">
+                      <input id="c3" type="checkbox" checked disabled>
+                      <label for="c3">Disabled</label>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col">
+                  <fieldset>
+                    <legend>Radio buttons</legend>
+                    <div class="field-row">
+                      <input id="r1" type="radio" name="r" checked>
+                      <label for="r1">Large icons</label>
+                    </div>
+                    <div class="field-row">
+                      <input id="r2" type="radio" name="r">
+                      <label for="r2">Small icons</label>
+                    </div>
+                    <div class="field-row">
+                      <input id="r3" type="radio" name="r" disabled>
+                      <label for="r3">Disabled</label>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Combo box & spinner</legend>
+                    <div class="field-row">
+                      <label for="s1">Display:</label>
+                      <select id="s1">
+                        <option>Windows Standard</option>
+                        <option>Brick</option>
+                        <option>Desert</option>
+                      </select>
+                      <select disabled>
+                        <option>Disabled</option>
+                      </select>
+                    </div>
+                    <div class="field-row">
+                      <label for="n1">Copies:</label><span class="spinner">
+                        <input id="n1" type="number" value="1" min="0" max="99" style="width: 60px"><span class="spinner-buttons">
+                          <button class="spinner-up" type="button" aria-label="Increase"></button>
+                          <button class="spinner-down" type="button" aria-label="Decrease"></button></span></span>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Trackbar</legend>
+                    <div class="field-row">
+                      <label>Slow</label>
+                      <input type="range" min="0" max="10" value="4">
+                      <label>Fast</label>
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <legend>List boxes</legend>
+                    <div class="grid grid-space">
+                      <div class="col">
+                        <ul class="listbox" data-listview style="height: 90px">
+                          <li>Arial</li>
+                          <li class="active focus">Courier New</li>
+                          <li>Tahoma</li>
+                          <li>Times New Roman</li>
+                          <li class="disabled">Wingdings</li>
+                        </ul>
+                      </div>
+                      <div class="col">
+                        <select multiple style="width: 100%; height: 90px">
+                          <option>Arial</option>
+                          <option selected>Tahoma</option>
+                          <option>Verdana</option>
+                        </select>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+/**
+ * Menu bar & menus
+ *
+ *   <ul class="menubar">
+ *     <li class="menubar-item" tabindex="0"><u>F</u>ile
+ *       <ul class="menu">
+ *         <li>New <span class="menu-shortcut">Ctrl+N</span></li>
+ *         <li class="menu-separator"></li>
+ *         <li class="menu-submenu">Send To <ul class="menu">...</ul></li>
+ *       </ul>
+ *     </li>
+ *   </ul>
+ *
+ * Without classic.js a menu opens while its menubar item has focus. A
+ * standalone .menu (e.g. a context menu) is always visible.
+ */
+.menubar {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: (1px * @s) 0;
+	list-style: none;
+	background-color: @color_button_face;
+	user-select: none;
+}
+
+.menubar-item {
+	position: relative;
+	padding: (2px * @s) (6px * @s);
+	line-height: 13px * @s;
+	cursor: default;
+	outline: none;
+
+	&:hover {
+		.raised-thin();
+	}
+
+	&.open, .menubar:not([data-js]) &:focus-within {
+		.sunken-thin();
+		padding: (3px * @s) (5px * @s) (1px * @s) (7px * @s);
+
+		> .menu {
+			display: block;
+		}
+	}
+
+	> .menu {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+	}
+}
+
+.menu {
+
+	.raised();
+
+	z-index: 50;
+	min-width: 150px * @s;
+	margin: 0;
+	padding: (3px * @s);
+	list-style: none;
+	background-color: @color_button_face;
+	color: @color_text;
+	white-space: nowrap;
+	user-select: none;
+	text-align: left;
+
+	> li {
+		position: relative;
+		display: block;
+		height: 17px * @s;
+		line-height: 17px * @s;
+		padding: 0 (20px * @s);
+		cursor: default;
+		outline: none;
+
+		background-position: (6px * @s) center;
+
+		&:hover, &.active, &:focus {
+			.highlighted();
+		}
+
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		&.disabled {
+			.disabled-text();
+
+			&:hover, &.active {
+				background-color: @color_highlight;
+				color: @color_disabled_text;
+				text-shadow: none;
+			}
+		}
+
+		// marks
+		&.menu-checked {
+			.glyph-check();
+			background-position: (6px * @s) center;
+		}
+		&.menu-checked:hover, &.menu-checked.active {
+			.glyph-check("%23fff");
+			background-position: (6px * @s) center;
+		}
+		&.menu-radio-checked {
+			.glyph-radio-dot();
+			background-position: (8px * @s) center;
+		}
+		&.menu-radio-checked:hover, &.menu-radio-checked.active {
+			.glyph-radio-dot("%23fff");
+			background-position: (8px * @s) center;
+		}
+
+		// default item of a context menu
+		&.menu-default {
+			font-weight: bold;
+		}
+	}
+
+	.menu-shortcut {
+		float: right;
+		padding-left: 24px * @s;
+	}
+
+	> li.menu-separator {
+		height: 2 * @bw;
+		margin: (3px * @s) (1px * @s);
+		padding: 0;
+		border-top: solid @bw @color_shadow_dark;
+		border-bottom: solid @bw @color_shadow_light;
+		background: none;
+		pointer-events: none;
+	}
+
+	// items opening another menu
+	> li.menu-submenu {
+
+		&:after {
+			content: "";
+			position: absolute;
+			right: 6px * @s;
+			top: 50%;
+			width: 4px * @s;
+			height: 7px * @s;
+			margin-top: -3.5px * @s;
+			.glyph-arrow-right();
+		}
+
+		&:hover:after, &.active:after, &.open:after {
+			.glyph-arrow-right("%23fff");
+		}
+
+		&.open {
+			.highlighted();
+		}
+
+		> .menu {
+			display: none;
+			position: absolute;
+			left: 100%;
+			top: -3px * @s;
+			margin-left: -3px * @s;
+			color: @color_text;
+			text-shadow: none;
+		}
+
+		&.open > .menu,
+		.menubar:not([data-js]) &:hover > .menu {
+			display: block;
+		}
+	}
+}

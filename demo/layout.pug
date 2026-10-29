@@ -10,9 +10,30 @@ html(lang="en")
   body
 
     #demo-window-container
-      .window.window-active
-        .window-header 
+      .window
+        .window-header
           span.window-header-title Classic CSS explorer – #{title}
+          span.window-header-controls
+            button.window-minimize(aria-label='Minimize')
+            button.window-maximize(aria-label='Maximize')
+            button.window-close(aria-label='Close')
+
+        .toolbar.toolbar-plain
+          label(for='demo-font') Font:
+          select#demo-font
+            option(value='tahoma') Tahoma (Windows 2000)
+            option(value='pixel') Pixel (px-sans-nouveaux)
+          script.
+            (function () {
+              var select = document.getElementById('demo-font');
+              var html = document.documentElement;
+              select.value = html.classList.contains('font-pixel') ? 'pixel' : 'tahoma';
+              select.addEventListener('change', function () {
+                html.classList.remove('font-tahoma', 'font-pixel');
+                html.classList.add('font-' + select.value);
+                try { localStorage.setItem('classic-font', select.value); } catch (e) {}
+              });
+            })();
 
         .grid.grid-space
           .col3

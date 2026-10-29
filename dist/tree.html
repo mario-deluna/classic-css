@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- parameters-->
+  <!-- Header-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Title-->
+    <title>Tree view – Classic CSS</title>
+    <!-- Stylesheets-->
+    <link rel="stylesheet" href="classic.css?1793276114379" type="text/css">
+    <link rel="stylesheet" href="demo.css?1793276114379" type="text/css">
+    <!-- Demo font picker, applied before the page renders-->
+    <script>
+      try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+      
+    </script>
+    <!-- Optional behaviour-->
+    <script src="classic.js?1793276114379" defer></script>
+  </head>
+  <!-- Body Base layout-->
+  <body>
+    <div id="demo-window-container">
+      <div class="window">
+        <div class="window-header"><span class="window-header-title">Classic CSS explorer – Tree view</span><span class="window-header-controls">
+            <button class="window-minimize" aria-label="Minimize"></button>
+            <button class="window-maximize" aria-label="Maximize"></button>
+            <button class="window-close" aria-label="Close"></button></span></div>
+        <div class="toolbar toolbar-plain">
+          <label for="demo-font">Font:</label>
+          <select id="demo-font">
+            <option value="tahoma">Tahoma (Windows 2000)</option>
+            <option value="pixel">Pixel (px-sans-nouveaux)</option>
+          </select>
+          <script>
+            (function () {
+              var select = document.getElementById('demo-font');
+              var html = document.documentElement;
+              select.value = html.classList.contains('font-pixel') ? 'pixel' : 'tahoma';
+              select.addEventListener('change', function () {
+                html.classList.remove('font-tahoma', 'font-pixel');
+                html.classList.add('font-' + select.value);
+                try { localStorage.setItem('classic-font', select.value); } catch (e) {}
+              });
+            })();
+            
+          </script>
+        </div>
+        <div class="grid grid-space">
+          <div class="col3">
+            <div class="window-content" style="height: 100%; overflow: auto">
+              <ul class="tree-view">
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Getting started</summary>
+                    <ul>
+                      <li><a href="index.html"><span class="icon icon-document"></span>Welcome</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Controls</summary>
+                    <ul>
+                      <li><a href="buttons.html"><span class="icon icon-document"></span>Buttons</a></li>
+                      <li><a href="forms.html"><span class="icon icon-document"></span>Form controls</a></li>
+                      <li><a href="progress.html"><span class="icon icon-document"></span>Progress bars</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Windows</summary>
+                    <ul>
+                      <li><a href="window.html"><span class="icon icon-document"></span>Windows</a></li>
+                      <li><a href="menus.html"><span class="icon icon-document"></span>Menus</a></li>
+                      <li><a href="toolbar.html"><span class="icon icon-document"></span>Toolbars &amp; status bar</a></li>
+                      <li><a href="tabs.html"><span class="icon icon-document"></span>Tabs</a></li>
+                      <li><a href="dialogs.html"><span class="icon icon-document"></span>Dialogs &amp; tooltips</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Data views</summary>
+                    <ul>
+                      <li class="active"><a href="tree.html"><span class="icon icon-document"></span>Tree view</a></li>
+                      <li><a href="listview.html"><span class="icon icon-document"></span>List views</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary><span class="icon icon-folder"></span>Shell</summary>
+                    <ul>
+                      <li><a href="desktop.html"><span class="icon icon-document"></span>Desktop</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <div class="pdn demo-row" style="align-items: flex-start">
+              <div class="window-content" style="width: 280px; height: 320px; overflow: auto">
+                <ul class="tree-view">
+                  <li>
+                    <details open>
+                      <summary><span class="icon icon-folder"></span>Desktop</summary>
+                      <ul>
+                        <li>
+                          <details>
+                            <summary><span class="icon icon-folder"></span>My Documents</summary>
+                            <ul>
+                              <li><a href="#"><span class="icon icon-document"></span>readme.txt</a></li>
+                            </ul>
+                          </details>
+                        </li>
+                        <li>
+                          <details open>
+                            <summary><span class="icon icon-computer"></span>My Computer</summary>
+                            <ul>
+                              <li>
+                                <details open>
+                                  <summary><span class="icon icon-folder"></span>Local Disk (C:)</summary>
+                                  <ul>
+                                    <li><a href="#"><span class="icon icon-folder"></span>Documents and Settings</a></li>
+                                    <li><a href="#"><span class="icon icon-folder"></span>Program Files</a></li>
+                                    <li class="active">
+                                      <details>
+                                        <summary tabindex="0"><span class="icon icon-folder"></span>WINNT</summary>
+                                        <ul>
+                                          <li><a href="#"><span class="icon icon-folder"></span>system32</a></li>
+                                        </ul>
+                                      </details>
+                                    </li>
+                                  </ul>
+                                </details>
+                              </li>
+                              <li><a href="#"><span class="icon icon-folder"></span>Control Panel</a></li>
+                            </ul>
+                          </details>
+                        </li>
+                        <li><a href="#"><span class="icon icon-globe"></span>My Network Places</a></li>
+                        <li><a href="#"><span class="icon icon-recycle-bin"></span>Recycle Bin</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </div>
+              <div class="window-content" style="width: 220px">
+                <ul class="tree-view">
+                  <li><a href="#">Without icons</a></li>
+                  <li>
+                    <details open>
+                      <summary>Expanded</summary>
+                      <ul>
+                        <li><a href="#">Child one</a></li>
+                        <li><a href="#">Child two</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary>Collapsed</summary>
+                      <ul>
+                        <li><a href="#">Hidden</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

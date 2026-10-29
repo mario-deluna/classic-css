@@ -1,0 +1,68 @@
+extends layout.pug
+include mixins/window.pug
+
+block params
+  - var active='menus.html'
+  - var title='Menus'
+
+block content
+  .pdn.demo-stack
+    +window('Untitled - Notepad', {icon: 'document'})
+      ul.menubar(data-menubar)
+        li.menubar-item(tabindex='0') <u>F</u>ile
+          ul.menu
+            li <u>N</u>ew <span class="menu-shortcut">Ctrl+N</span>
+            li <u>O</u>pen… <span class="menu-shortcut">Ctrl+O</span>
+            li <u>S</u>ave <span class="menu-shortcut">Ctrl+S</span>
+            li Save <u>A</u>s…
+            li.menu-separator
+            li.menu-submenu Sen<u>d</u> To
+              ul.menu
+                li Desktop (create shortcut)
+                li Mail Recipient
+                li My Documents
+            li.menu-separator
+            li E<u>x</u>it
+        li.menubar-item(tabindex='0') <u>E</u>dit
+          ul.menu
+            li.disabled <u>U</u>ndo <span class="menu-shortcut">Ctrl+Z</span>
+            li.menu-separator
+            li Cu<u>t</u> <span class="menu-shortcut">Ctrl+X</span>
+            li <u>C</u>opy <span class="menu-shortcut">Ctrl+C</span>
+            li <u>P</u>aste <span class="menu-shortcut">Ctrl+V</span>
+        li.menubar-item(tabindex='0') <u>V</u>iew
+          ul.menu
+            li.menu-checked <u>S</u>tatus Bar
+            li.menu-separator
+            li.menu-radio-checked Lar<u>g</u>e Icons
+            li S<u>m</u>all Icons
+            li <u>D</u>etails
+        li.menubar-item(tabindex='0') <u>H</u>elp
+          ul.menu
+            li <u>A</u>bout Notepad
+      textarea(style='width: 100%; height: 220px')
+
+    .demo-heading Context menu (right click, needs classic.js)
+    .window-content.pdn(data-contextmenu='#ctx', style='height: 60px') Right click me
+    ul.menu#ctx
+      li.menu-default <u>O</u>pen
+      li.menu-separator
+      li.menu-submenu <u>N</u>ew
+        ul.menu
+          li <u>F</u>older
+          li Text Document
+      li.menu-separator
+      li P<u>r</u>operties
+
+    .demo-heading Context menu (static)
+    ul.menu(style='display: inline-block')
+      li.menu-default <u>O</u>pen
+      li <u>E</u>xplore
+      li.active <u>F</u>ind…
+      li.menu-separator
+      li.menu-submenu Se<u>n</u>d To
+      li.menu-separator
+      li.disabled Cu<u>t</u>
+      li <u>C</u>opy
+      li.menu-separator
+      li P<u>r</u>operties

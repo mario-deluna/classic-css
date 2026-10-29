@@ -2,24 +2,84 @@
  * Font
  */
 @font-face {
-  	font-family: 'px-sans-nouveaux';
-    src: url('px-sans-nouveaux.ttf.woff') format('woff'),
-	    url('px-sans-nouveaux.ttf.svg#px-sans-nouveaux') format('svg'),
-	    url('px-sans-nouveaux.ttf.eot'),
-	    url('px-sans-nouveaux.eot?#iefix') format('embedded-opentype'); 
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'px-sans-nouveaux';
+	src: url('px-sans-nouveaux.ttf.woff') format('woff'),
+		url('px-sans-nouveaux.ttf.svg#px-sans-nouveaux') format('svg'),
+		url('px-sans-nouveaux.ttf.eot'),
+		url('px-sans-nouveaux.eot?#iefix') format('embedded-opentype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.font-tahoma {
+	font-family: @font_tahoma_family;
+	font-size: @font_tahoma_size * @s;
+
+	.window-header-title {
+		letter-spacing: normal;
+	}
+}
+
+.font-pixel {
+	font-family: @font_pixel_family;
+	font-size: @font_pixel_size * @s;
+
+	// the bold pixel font runs wide
+	.window-header-title {
+		letter-spacing: -1px;
+	}
+}
+
+// the default font, on html so the classes above can override it anywhere
+html {
+	& when (@font = pixel) {
+		.font-pixel();
+	}
+	& when not (@font = pixel) {
+		.font-tahoma();
+	}
 }
 
 body {
-	font-family: @font_familty;
-	font-size: @font_size * @s;
-	
-	// disable anti aliasing
-	font-smooth: never;
-    -webkit-font-smoothing : none;
+	color: @color_text;
 }
 
+// sizes below are relative so the font classes work on any container
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+/**
+ * Separators
+ */
+hr, .separator {
+	height: 2 * @bw;
+	margin: (4px * @s) 0;
+	border: 0;
+	border-top: solid @bw @color_shadow_dark;
+	border-bottom: solid @bw @color_shadow_light;
+	box-sizing: border-box;
+}
+
+.separator-vertical {
+	display: inline-block;
+	width: 2 * @bw;
+	align-self: stretch;
+	border-left: solid @bw @color_shadow_dark;
+	border-right: solid @bw @color_shadow_light;
+}
+
+/**
+ * Text
+ */
+label {
+	cursor: default;
+}
+
+.text-disabled {
+	.disabled-text();
+}
 
 /**
  * Helpers

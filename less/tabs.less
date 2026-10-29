@@ -1,0 +1,138 @@
+/**
+ * Tabs
+ *
+ * With classic.js (or your own script toggling aria-selected / hidden):
+ *
+ *   <div class="tabs" data-tabs>
+ *     <div class="tab-list" role="tablist">
+ *       <button class="tab" role="tab" aria-selected="true">General</button>
+ *       <button class="tab" role="tab">Sharing</button>
+ *     </div>
+ *     <div class="tab-panel" role="tabpanel">...</div>
+ *     <div class="tab-panel" role="tabpanel" hidden>...</div>
+ *   </div>
+ *
+ * Pure CSS with radio inputs (up to 10 tabs):
+ *
+ *   <div class="tabs tabs-radio">
+ *     <input type="radio" name="t" id="t1" checked><label class="tab" for="t1">General</label>
+ *     <input type="radio" name="t" id="t2"><label class="tab" for="t2">Sharing</label>
+ *     <div class="tab-panel">...</div>
+ *     <div class="tab-panel">...</div>
+ *   </div>
+ */
+.tab-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	padding-left: 2px * @s;
+}
+
+// white top / left, dark right edge, chamfered top corners
+.tab-bevel() {
+	box-shadow:
+		inset @bw @bw @color_shadow_light,
+		inset (-@bw) 0 @color_shadow_very_dark,
+		inset (-2 * @bw) 0 @color_shadow_dark;
+	clip-path: polygon(0 (2 * @bw), (2 * @bw) 0, calc(100% - (2 * @bw)) 0, 100% (2 * @bw), 100% 100%, 0 100%);
+}
+
+.tab {
+	position: relative;
+	display: inline-block;
+	flex-shrink: 0;
+	min-width: 0;
+	height: auto;
+	margin: 0;
+	padding: (3px * @s) (6px * @s) (2px * @s);
+	border: 0;
+	border-radius: 0;
+	background-color: @color_button_face;
+	.tab-bevel();
+	line-height: 13px * @s;
+	color: @color_text;
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: default;
+	user-select: none;
+
+	// tabs are often buttons, undo the pressed button look
+	&:active, &.active {
+		padding: (3px * @s) (6px * @s) (2px * @s);
+		.tab-bevel();
+	}
+
+	&:focus {
+		outline: none;
+	}
+	&:focus-visible {
+		.focus-rect(-3px);
+	}
+}
+
+// the selected tab is a bit larger and covers the top line of the panel
+.tab-selected() {
+	.tab-bevel();
+	z-index: 1;
+	margin: 0 (-2px * @s) (-1 * @bw);
+	padding: (4px * @s) (8px * @s) ((3px * @s) + @bw);
+}
+
+.tab[aria-selected="true"], .tab.active {
+	.tab-selected();
+
+	&:active {
+		.tab-selected();
+	}
+}
+
+// same bevel as a button, the outer white line meets the tabs
+.tab-panel {
+	.raised-button();
+
+	position: relative;
+	padding: 10px * @s;
+	background-color: @color_button_face;
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+/**
+ * CSS only variant
+ */
+.tabs-radio {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	padding-left: 2px * @s;
+
+	> input[type="radio"] {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	> input:checked + .tab {
+		.tab-selected();
+	}
+
+	> input:focus-visible + .tab {
+		.focus-rect(-3px);
+	}
+
+	> .tab-panel {
+		display: none;
+		flex: 0 0 calc(100% + (2px * @s));
+		margin-left: -2px * @s;
+	}
+
+	.tab-radio-loop(@i) when (@i > 0) {
+		> input:nth-of-type(@{i}):checked ~ .tab-panel:nth-of-type(@{i}) {
+			display: block;
+		}
+		.tab-radio-loop(@i - 1);
+	}
+	.tab-radio-loop(10);
+}

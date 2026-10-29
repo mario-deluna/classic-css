@@ -1,0 +1,19 @@
+extends layout.pug
+
+block params
+  - var active='progress.html'
+  - var title='Progress bars'
+
+block content
+  .window-content.pdn.demo-stack
+    .demo-heading Native progress element
+    progress(value='45', max='100')
+
+    .demo-heading Blocks
+    .progress
+      .progress-bar(style='width: 70%')
+
+    .demo-heading Smooth
+    .progress.progress-smooth
+      .progress-bar(style='width: 30%')
+    progress.progress-smooth(value='80', max='100')

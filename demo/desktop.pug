@@ -1,0 +1,98 @@
+include mixins/window.pug
+doctype html
+html(lang="en")
+  - var active='desktop.html'
+  - var title='Desktop'
+  include includes/head.pug
+
+  body
+    .desktop
+      .desktop-icons
+        a.desktop-icon(href='#', tabindex='0')
+          span.icon.icon-32.icon-computer
+          span My Computer
+        a.desktop-icon(href='#', tabindex='0')
+          span.icon.icon-32.icon-folder
+          span My Documents
+        a.desktop-icon(href='#', tabindex='0')
+          span.icon.icon-32.icon-globe
+          span My Network Places
+        a.desktop-icon(href='#', tabindex='0')
+          span.icon.icon-32.icon-recycle-bin
+          span Recycle Bin
+        a.desktop-icon.active(href='index.html')
+          span.icon.icon-32.icon-document
+          span Classic CSS explorer
+
+      +window('Untitled - Notepad', {icon: 'document', style: 'position: absolute; left: 260px; top: 60px; width: 420px', attrs: {'data-window': '', 'data-draggable': ''}})
+        ul.menubar(data-menubar)
+          li.menubar-item(tabindex='0') <u>F</u>ile
+            ul.menu
+              li <u>N</u>ew <span class="menu-shortcut">Ctrl+N</span>
+              li <u>O</u>pen… <span class="menu-shortcut">Ctrl+O</span>
+              li.menu-separator
+              li E<u>x</u>it
+          li.menubar-item(tabindex='0') <u>E</u>dit
+            ul.menu
+              li <u>C</u>opy <span class="menu-shortcut">Ctrl+C</span>
+              li <u>P</u>aste <span class="menu-shortcut">Ctrl+V</span>
+          li.menubar-item(tabindex='0') <u>H</u>elp
+            ul.menu
+              li <u>A</u>bout Notepad
+        textarea(style='width: 100%; height: 200px') Hello from Windows 2000! Drag me by the title bar.
+
+      +window('Confirm', {dialog: true, class: 'window-dialog', inactive: true, style: 'position: absolute; left: 520px; top: 330px', attrs: {'data-window': '', 'data-draggable': ''}})
+        .window-body
+          .msgbox
+            span.msgbox-icon.msgbox-icon-question
+            p.msgbox-text Click a window to activate it.
+          .button-row
+            button.btn-default OK
+
+      .start-menu#start-menu
+        .start-menu-banner
+          b Windows
+          | 2000 Professional
+        ul.menu
+          li.menu-submenu
+            span.icon.icon-folder
+            | <u>P</u>rograms
+            ul.menu
+              li Accessories
+              li Internet Explorer
+              li Outlook Express
+          li.menu-submenu
+            span.icon.icon-document
+            | <u>D</u>ocuments
+          li.menu-submenu
+            span.icon.icon-computer
+            | <u>S</u>ettings
+          li
+            span.icon.icon-globe
+            | Sear<u>c</u>h
+          li
+            span.icon.icon-document
+            | <u>H</u>elp
+          li
+            span.icon.icon-computer
+            | <u>R</u>un…
+          li.menu-separator
+          li
+            span.icon.icon-computer
+            | Sh<u>u</u>t Down…
+
+      .taskbar
+        button.start-button.active(data-start-button='#start-menu')
+          span.icon.icon-windows
+          | Start
+        span.toolbar-separator
+        .taskbar-buttons
+          button.taskbar-button.active
+            span.icon.icon-document
+            | Untitled - Notepad
+          button.taskbar-button
+            span.icon.icon-folder-open
+            | My Documents
+        .taskbar-tray
+          span.icon.icon-globe
+          span(data-clock) 12:00 PM

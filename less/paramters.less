@@ -1,21 +1,47 @@
 /**
  * UI Scale
  */
-@s: 2;
+@s: 1.5;
+
+// Width of a single bevel line / pixel of a glyph.
+// Use whole numbers (or x.5 on retina) for @s to keep everything crisp.
+@bw: 1px * @s;
 
 /**
  * Font
  */
-@font_familty: 'px-sans-nouveaux', Arial, Helvetica, sans-serif;
-@font_size: 9px;
-@line_height_mod: 1.8;
+// The default UI font:
+//   tahoma  the Windows 2000 UI font (installed on Windows & macOS)
+//   pixel   the bundled px-sans-nouveaux bitmap style font
+// Either can also be picked at runtime with the .font-tahoma / .font-pixel
+// classes, on <html> or any single window / container.
+@font: tahoma;
+
+@font_tahoma_family: Tahoma, Verdana, 'DejaVu Sans', 'Segoe UI', sans-serif;
+@font_tahoma_size: 11px;
+@font_pixel_family: 'px-sans-nouveaux', Tahoma, sans-serif;
+@font_pixel_size: 9px;
 
 /**
- * Colors
+ * Colors (Windows 2000 system colors)
  */
 @color_background: RGB(70, 110, 161);
-@color_window_background: RGB(211, 208, 201);
+@color_button_face: #d4d0c8;
+@color_window_background: @color_button_face;
+@color_field: #fff;
+@color_text: #000;
 @color_shadow_light: #FFF;
 @color_shadow_dark: #808080;
 @color_shadow_very_dark: #404040;
+@color_window_frame: #000;
 @color_highlight: #0a246a;
+@color_highlight_text: #fff;
+@color_disabled_text: #808080;
+@color_info_bg: #ffffe1;
+
+// title bar gradients
+@color_active_title_a: #0a246a;
+@color_active_title_b: #a6caf0;
+@color_inactive_title_a: #808080;
+@color_inactive_title_b: #c0c0c0;
+@color_inactive_title_text: #d4d0c8;

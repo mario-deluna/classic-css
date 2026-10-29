@@ -1,3 +1,9 @@
+/**
+ * Styles for the demo pages only, not part of classic.css
+ */
+@import (reference) "paramters.less";
+@import (reference) "mixins.less";
+
 body {
 	background-color: @color_background;
 }
@@ -6,7 +12,28 @@ body {
 	width: 100%;
 	height: 100%;
 
-	.window {
-		margin: 10%;
+	> .window {
+		margin: 5%;
+	}
+}
+
+.demo-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px * @s;
+	margin-bottom: 6px * @s;
+}
+
+.demo-stack > * + * {
+	margin-top: 6px * @s;
+}
+
+.demo-heading {
+	font-weight: bold;
+	margin: (8px * @s) 0 (4px * @s);
+
+	&:first-child {
+		margin-top: 0;
 	}
 }

@@ -1,0 +1,70 @@
+/**
+ * Scrollbars
+ *
+ * Classic scrollbars in WebKit / Blink browsers. They are applied to the
+ * whole page unless @global_scrollbars is false, then only elements with
+ * .classic-scroll (and their children) get them. Firefox only supports
+ * coloring the scrollbar.
+ */
+@global_scrollbars: true;
+
+.classic-scrollbar() {
+	&::-webkit-scrollbar {
+		width: 16px * @s;
+		height: 16px * @s;
+	}
+
+	&::-webkit-scrollbar-track {
+		.dither();
+	}
+
+	&::-webkit-scrollbar-thumb {
+		.raised();
+		background-color: @color_button_face;
+	}
+
+	&::-webkit-scrollbar-corner {
+		background-color: @color_button_face;
+	}
+
+	// :single-button is not matched by current Chrome, :start / :end are
+	@up: ~"::-webkit-scrollbar-button:vertical:start:decrement";
+	@down: ~"::-webkit-scrollbar-button:vertical:end:increment";
+	@left: ~"::-webkit-scrollbar-button:horizontal:start:decrement";
+	@right: ~"::-webkit-scrollbar-button:horizontal:end:increment";
+
+	&@{up}, &@{down}, &@{left}, &@{right} {
+		display: block;
+		width: 16px * @s;
+		height: 16px * @s;
+		background-color: @color_button_face;
+	}
+
+	&@{up} { .glyph-scroll-up(); }
+	&@{down} { .glyph-scroll-down(); }
+	&@{left} { .glyph-scroll-left(); }
+	&@{right} { .glyph-scroll-right(); }
+
+	// pressed buttons are flat
+	&@{up}:active { .glyph-scroll-up("%23808080"; "%23d4d0c8"; "%23d4d0c8"; "%23808080"); }
+	&@{down}:active { .glyph-scroll-down("%23808080"; "%23d4d0c8"; "%23d4d0c8"; "%23808080"); }
+	&@{left}:active { .glyph-scroll-left("%23808080"; "%23d4d0c8"; "%23d4d0c8"; "%23808080"); }
+	&@{right}:active { .glyph-scroll-right("%23808080"; "%23d4d0c8"; "%23d4d0c8"; "%23808080"); }
+}
+
+& when (@global_scrollbars = true) {
+	html, body * {
+		.classic-scrollbar();
+	}
+}
+
+.classic-scroll, .classic-scroll * {
+	.classic-scrollbar();
+}
+
+// Firefox
+@supports not selector(::-webkit-scrollbar) {
+	html, .classic-scroll {
+		scrollbar-color: @color_button_face #ece9e4;
+	}
+}

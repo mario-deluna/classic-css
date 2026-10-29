@@ -1,0 +1,76 @@
+extends layout.pug
+
+block params
+  - var active='tree.html'
+  - var title='Tree view'
+
+block content
+  .pdn.demo-row(style='align-items: flex-start')
+    .window-content(style='width: 280px; height: 320px; overflow: auto')
+      ul.tree-view
+        li
+          details(open)
+            summary
+              span.icon.icon-folder
+              | Desktop
+            ul
+              li
+                details
+                  summary
+                    span.icon.icon-folder
+                    | My Documents
+                  ul
+                    li: a(href='#')
+                      span.icon.icon-document
+                      | readme.txt
+              li
+                details(open)
+                  summary
+                    span.icon.icon-computer
+                    | My Computer
+                  ul
+                    li
+                      details(open)
+                        summary
+                          span.icon.icon-folder
+                          | Local Disk (C:)
+                        ul
+                          li: a(href='#')
+                            span.icon.icon-folder
+                            | Documents and Settings
+                          li: a(href='#')
+                            span.icon.icon-folder
+                            | Program Files
+                          li.active
+                            details
+                              summary(tabindex='0')
+                                span.icon.icon-folder
+                                | WINNT
+                              ul
+                                li: a(href='#')
+                                  span.icon.icon-folder
+                                  | system32
+                    li: a(href='#')
+                      span.icon.icon-folder
+                      | Control Panel
+              li: a(href='#')
+                span.icon.icon-globe
+                | My Network Places
+              li: a(href='#')
+                span.icon.icon-recycle-bin
+                | Recycle Bin
+
+    .window-content(style='width: 220px')
+      ul.tree-view
+        li: a(href='#') Without icons
+        li
+          details(open)
+            summary Expanded
+            ul
+              li: a(href='#') Child one
+              li: a(href='#') Child two
+        li
+          details
+            summary Collapsed
+            ul
+              li: a(href='#') Hidden

@@ -1,8 +1,17 @@
 
 <head>
   <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <!-- Title-->
   <title> – Classic CSS</title>
   <!-- Stylesheets-->
-  <link rel="stylesheet" href="classic.css?1521589998113" type="text/css"/>
+  <link rel="stylesheet" href="classic.css?1793276114295" type="text/css"/>
+  <link rel="stylesheet" href="demo.css?1793276114295" type="text/css"/>
+  <!-- Demo font picker, applied before the page renders-->
+  <script>
+    try { var f = localStorage.getItem('classic-font'); if (f) document.documentElement.classList.add('font-' + f); } catch (e) {}
+    
+  </script>
+  <!-- Optional behaviour-->
+  <script src="classic.js?1793276114295" defer="defer"></script>
 </head>

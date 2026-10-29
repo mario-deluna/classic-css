@@ -1,0 +1,17 @@
+//- A window with title bar, usage: +window('Title', {icon: 'folder', inactive: true})
+mixin window(title, opts)
+  - opts = opts || {}
+  .window(class=opts.class, class={'window-inactive': opts.inactive}, style=opts.style)&attributes(opts.attrs || {})
+    .window-header
+      if opts.icon
+        span.window-header-icon.icon(class='icon-' + opts.icon)
+      span.window-header-title= title
+      span.window-header-controls
+        if opts.dialog
+          if opts.help
+            button.window-help(aria-label='Help')
+        else
+          button.window-minimize(aria-label='Minimize')
+          button.window-maximize(aria-label='Maximize')
+        button.window-close(aria-label='Close')
+    block

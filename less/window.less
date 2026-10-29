@@ -1,50 +1,172 @@
+/**
+ * Window
+ *
+ *   <div class="window">
+ *     <div class="window-header">
+ *       <span class="window-header-icon"></span>
+ *       <span class="window-header-title">Title</span>
+ *       <span class="window-header-controls">
+ *         <button class="window-minimize"></button>
+ *         <button class="window-maximize"></button>
+ *         <button class="window-close"></button>
+ *       </span>
+ *     </div>
+ *     <div class="window-body">...</div>
+ *   </div>
+ */
 .window {
 
-	background-color: @color_window_background;
-	.shadow-border();
+	.raised();
 
-	padding: 3px * @s;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 4px * @s;
+	background-color: @color_window_background;
 
 	// Header
 	.window-header {
 
-		height: 17px * @s;
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+		height: 18px * @s;
 		margin-bottom: 1px * @s;
+		padding: 0 (2px * @s);
+		gap: 3px * @s;
+		user-select: none;
 
-		// background gradient
-		background-color: #a0a0a0;
-	    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjODA4MDgwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNjMGMwYzAiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
-	    background-image: -webkit-gradient(linear, 0% 0%, 100% 0%,color-stop(0, rgb(128, 128, 128)),color-stop(1, rgb(192, 192, 192)));
-	    background-image: -webkit-repeating-linear-gradient(left,rgb(128, 128, 128) 0%,rgb(192, 192, 192) 100%);
-	    background-image: repeating-linear-gradient(to right,rgb(128, 128, 128) 0%,rgb(192, 192, 192) 100%);
-	    background-image: -ms-repeating-linear-gradient(left,rgb(128, 128, 128) 0%,rgb(192, 192, 192) 100%);
+		.title-gradient(@color_active_title_a, @color_active_title_b);
+	}
 
-		.window-active& {
-			background-color: #5877ad;
-		    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjMGEyNDZhIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNhNmNhZjAiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
-		    background-image: -webkit-gradient(linear, 0% 0%, 100% 0%,color-stop(0, rgb(10, 36, 106)),color-stop(1, rgb(166, 202, 240)));
-		    background-image: -webkit-repeating-linear-gradient(left,rgb(10, 36, 106) 0%,rgb(166, 202, 240) 100%);
-		    background-image: repeating-linear-gradient(to right,rgb(10, 36, 106) 0%,rgb(166, 202, 240) 100%);
-		    background-image: -ms-repeating-linear-gradient(left,rgb(10, 36, 106) 0%,rgb(166, 202, 240) 100%);
+	// Icon (16x16), set background-image or put an <img> inside
+	.window-header-icon {
+		flex-shrink: 0;
+		width: 16px * @s;
+		height: 16px * @s;
+		background-size: contain;
+		background-repeat: no-repeat;
+		image-rendering: pixelated;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	// Title
+	.window-header-title {
+		flex: 1;
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: @color_highlight_text;
+		font-weight: bold;
+		font-size: 1em;
+		line-height: 18px * @s;
+	}
+
+	// Minimize, maximize, close & help
+	.window-header-controls {
+		display: flex;
+		flex-shrink: 0;
+
+		button {
+			min-width: 0;
+			width: 16px * @s;
+			height: 14px * @s;
+			padding: 0;
+			background-position: center;
+
+			&:active {
+				padding: 0;
+				background-position: calc(50% + @bw) calc(50% + @bw);
+			}
+
+			&:focus-visible {
+				outline: none;
+			}
 		}
 
-	    // Title
-	 	.window-header-title {
-	 		color: #fff;
-	 		font-weight: bold;
-	 		letter-spacing: -1px;
-			font-size: @font_size * @s;
-			line-height: @font_size * @line_height_mod * @s;
+		.window-minimize { .glyph-title-minimize(); }
+		.window-maximize { .glyph-title-maximize(); }
+		.window-restore { .glyph-title-restore(); }
+		.window-help { .glyph-title-help(); }
+		.window-close {
+			.glyph-title-close();
 			margin-left: 2px * @s;
-			float: left;
-	 	}
+		}
+
+		.window-close:first-child {
+			margin-left: 0;
+		}
+
+		button:disabled {
+			text-shadow: none;
+		}
+		.window-minimize:disabled { .glyph-title-minimize("%23808080"); }
+		.window-maximize:disabled { .glyph-title-maximize("%23808080"); }
+		.window-close:disabled { .glyph-title-close("%23808080"); }
 	}
 
-	.window-content {
+	// Inactive windows use the grey title bar
+	&.window-inactive .window-header {
+		.title-gradient(@color_inactive_title_a, @color_inactive_title_b);
 
-		background-color: #fff;
-		padding: 1px * @s;
-
-		.shadow-border-inverse();
+		.window-header-title {
+			color: @color_inactive_title_text;
+		}
 	}
+
+	// Plain face colored area for dialogs & forms
+	.window-body {
+		flex: 1;
+		padding: 8px * @s;
+	}
+
+	// the striped corner bottom right
+	.window-resize-grip {
+		position: absolute;
+		right: 4px * @s;
+		bottom: 4px * @s;
+		width: 12px * @s;
+		height: 12px * @s;
+		cursor: nwse-resize;
+		.glyph-resize-grip();
+	}
+
+	/**
+	 * Tool windows (palettes) have a smaller title bar
+	 */
+	&.window-tool {
+		.window-header {
+			height: 15px * @s;
+		}
+
+		.window-header-title {
+			font-size: 0.9em;
+			line-height: 15px * @s;
+		}
+
+		.window-header-controls button {
+			width: 13px * @s;
+			height: 11px * @s;
+			background-size: 70%;
+		}
+	}
+
+	&.window-maximized {
+		position: fixed;
+		inset: 0;
+		z-index: 100;
+	}
+}
+
+// Sunken white area for documents, lists etc. also usable outside of windows
+.window-content {
+	.sunken-border();
+
+	background-color: @color_field;
 }
